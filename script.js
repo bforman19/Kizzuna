@@ -527,34 +527,54 @@
   }
 
 
-  /* ---- PROMO VIDEO PLAYER (film.html) ---- */
-  const promoVideo = document.getElementById('promoVideo');
+  /* ---- PROMO VIDEO PLAYER (film.html) — YouTube ---- */
   const promoSound = document.getElementById('promoSound');
 
-  if (promoVideo) {
-    // Play when scrolled into view, pause when scrolled past
-    const videoObs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            promoVideo.play().catch(() => {});
-          } else {
-            promoVideo.pause();
+  if (document.getElementById('film-player')) {
+    let filmPlayer;
+    let filmMuted = true;
+
+    window.onYouTubeIframeAPIReady = function () {
+      filmPlayer = new YT.Player('film-player', {
+        events: {
+          onReady: function () {
+            filmPlayer.mute();
+
+            // Auto-play/pause on scroll
+            const promoPlayer = document.getElementById('promoPlayer');
+            const filmObs = new IntersectionObserver((entries) => {
+              entries.forEach(e => {
+                if (e.isIntersecting) {
+                  filmPlayer.playVideo();
+                } else {
+                  filmPlayer.pauseVideo();
+                }
+              });
+            }, { threshold: 0.4 });
+            filmObs.observe(promoPlayer);
           }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    videoObs.observe(promoVideo);
+        }
+      });
+    };
 
     // Sound toggle
     if (promoSound) {
       promoSound.addEventListener('click', () => {
-        promoVideo.muted = !promoVideo.muted;
-        promoSound.classList.toggle('is-unmuted', !promoVideo.muted);
-        promoSound.setAttribute('aria-label', promoVideo.muted ? 'Unmute video' : 'Mute video');
+        filmMuted = !filmMuted;
+        if (filmMuted) {
+          filmPlayer.mute();
+        } else {
+          filmPlayer.unMute();
+        }
+        promoSound.classList.toggle('is-unmuted', !filmMuted);
+        promoSound.setAttribute('aria-label', filmMuted ? 'Unmute video' : 'Mute video');
       });
     }
+
+    // Load YouTube IFrame API
+    const ytScript = document.createElement('script');
+    ytScript.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytScript);
   }
 
   /* ---- YOUTUBE VIDEO PREVIEW ---- */
