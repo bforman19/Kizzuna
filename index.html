@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kizzuna — A Youth-Led Documentary & Speaking Initiative</title>
+  <meta name="description" content="A youth-led documentary film and college speaking initiative about reclaiming the spaces where real life happens — from childhood to connection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- SITE LOADER -->
+<div class="site-loader" aria-hidden="true">
+  <div class="site-loader__logo">
+    <span>Kizzuna</span>
+  </div>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav__close label text-muted" style="position:absolute;top:2rem;right:2rem;font-size:1.5rem;">✕</button>
+  <a href="index.html"    class="mobile-nav__link">Home</a>
+  <a href="film.html"     class="mobile-nav__link">The Film</a>
+  <a href="speaking.html" class="mobile-nav__link">Speaking</a>
+  <a href="about.html"    class="mobile-nav__link">About</a>
+  <a href="story.html"    class="mobile-nav__link">The Story</a>
+  <a href="book.html"     class="mobile-nav__link" style="color:var(--amber)">Book Us</a>
+</nav>
+
+<!-- NAVIGATION -->
+<header class="nav" role="banner">
+  <a href="index.html" class="nav__logo">Kizzuna<span class="nav__logo-sub">the connection company</span></a>
+  <nav aria-label="Main navigation">
+    <ul class="nav__links">
+      <li><a href="index.html"    class="nav__link">Home</a></li>
+      <li><a href="film.html"     class="nav__link">The Film</a></li>
+      <li><a href="speaking.html" class="nav__link">Speaking</a></li>
+      <li><a href="about.html"    class="nav__link">About</a></li>
+      <li><a href="story.html"    class="nav__link">The Story</a></li>
+      <li><a href="book.html"     class="nav__link">Book</a></li>
+    </ul>
+  </nav>
+  <button class="nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ============================================================
+     SECTION 1 · HERO
+     [IMAGE] Replace .hero__bg--placeholder with a full-screen
+     cinematic film still — warm, dark, atmospheric. A figure
+     looking away, phone in hand or on table — something poetic.
+     Overlay stays as-is.
+     [MOTION] Title fades up on load. Subtle parallax on bg image.
+     ============================================================ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__bg hero__bg--placeholder" data-parallax="0.2">
+    <!-- <img src="images/hero-still.jpg" alt="Film still from Disconnected" /> -->
+  </div>
+  <div class="hero__overlay"></div>
+
+  <!-- Floating atmospheric orbs -->
+  <div class="hero__orbs" aria-hidden="true">
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__orb hero__orb--3"></div>
+  </div>
+
+  <div class="hero__content container" style="max-width:1280px;">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-line"></div>
+      <span class="label text-amber">Reclaiming the Spaces Where Real Life Happens</span>
+    </div>
+
+    <h1 class="display-xl hero__title">
+      Young people are<br>
+      <em id="hero-word-swap" class="word-swap">lost.</em><span class="typing-cursor" id="typing-cursor" aria-hidden="true"></span><span id="hero-tagline" class="hero-tagline" aria-hidden="true"> for a change.</span>
+    </h1>
+
+    <p class="subhead hero__subtitle">
+      Kizzuna is a film and speaking initiative made by young people who grew up
+      without the spaces childhood needs — and found their way back to something real.
+      Bring it to your campus.
+    </p>
+
+    <div class="hero__actions">
+      <a href="book.html" class="btn btn--primary">
+        Book for Your Campus
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn__arrow"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="film.html" class="btn btn--outline">Watch the Trailer</a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll-hint" aria-hidden="true">
+    <span class="label text-muted" style="writing-mode:vertical-rl;font-size:0.6875rem;letter-spacing:0.2em;">Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 · EMOTIONAL HOOK / CHAPTER INTRO
+     [MOTION] Text fades up line by line as user scrolls in.
+     Dark section — no images needed here. Typography is the art.
+     ============================================================ -->
+<section class="chapter-intro bg-cream section--light">
+  <div class="container--narrow text-center">
+    <div class="reveal">
+      <p class="label text-amber" style="margin-bottom:2rem;">The Space We Lost</p>
+    </div>
+    <h2 class="chapter-intro__quote reveal">
+      We grew up without<br>
+      <em>third places.</em><br>
+      Without afternoons that<br>
+      didn't belong to anyone.<br>
+      Without the boredom<br>
+      that turns into something real.
+    </h2>
+    <svg class="sketch-svg sketch-section-underline reveal" viewBox="0 0 300 14" aria-hidden="true">
+      <path class="sketch-path" d="M4,9 C60,4 130,13 200,7 C250,3 280,11 296,7" stroke-width="2.5"/>
+    </svg>
+    <div class="reveal" style="margin-top:3rem;">
+      <p class="subhead text-muted" style="max-width:580px;margin-inline:auto;">
+        Then we got phones — and suddenly there was somewhere to go.
+        They promised connection. Belonging. Somewhere to be.
+        And for a while, it felt like enough.
+      </p>
+      <p class="subhead" style="max-width:580px;margin-inline:auto;margin-top:1.5rem;color:var(--text-dark);">
+        We're asking about both.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- MARQUEE TICKER -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Free Play</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Third Places</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Real Connection</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Unstructured Time</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Presence</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Belonging</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Space to Breathe</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Community</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Reclamation</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Free Play</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Third Places</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Real Connection</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Unstructured Time</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Presence</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Belonging</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Space to Breathe</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Community</span>
+    <span class="marquee__sep">&bull;</span>
+    <span class="marquee__item">Reclamation</span>
+    <span class="marquee__sep">&bull;</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 3 · WHAT IS DISCONNECTED (split layout)
+     [IMAGE] Left side: 16:9 film still — warm, slightly overexposed,
+     a person outdoors without their phone. Cinematic crop.
+     [MOTION] Image slides in from left, text from right on scroll.
+     ============================================================ -->
+<section class="section bg-deep">
+  <div class="container">
+    <div class="grid-2" style="gap:clamp(3rem,6vw,8rem);">
+
+      <!-- Left: Image -->
+      <div class="reveal reveal--left">
+        <div class="img-frame img-frame--cinema">
+          <div class="img-frame__placeholder">
+            <!-- [IMAGE] Film still: person in open space, warm light -->
+            <img src="images/Disc5.png" alt="filming 1">          </div>
+          <div class="img-frame__overlay"></div>
+        </div>
+      </div>
+
+      <!-- Right: Text -->
+      <div class="reveal reveal--right">
+        <div class="film-strip">
+          <div class="film-strip__frame"></div>
+          <div class="film-strip__frame"></div>
+          <div class="film-strip__frame"></div>
+          <div class="film-strip__frame"></div>
+          <div class="film-strip__frame"></div>
+        </div>
+        <p class="label text-amber" style="margin-bottom:1rem;">Our Work</p>
+        <h2 class="display-md" style="margin-bottom:1.5rem;">
+          We lost the space.<br>Then we found<br><em>the phone.</em>
+        </h2>
+        <p class="body-lg text-muted" style="margin-bottom:1.25rem;">
+          The space came first. Childhood used to have physical places,
+          unstructured time, the freedom to be bored and find something better.
+          That space started disappearing in the 70s and 80s — before any of us had a phone.
+        </p>
+        <p class="body-lg text-muted" style="margin-bottom:2.5rem;">
+          Then phones arrived and offered connection, stimulation, somewhere to belong.
+          They stepped into the void — not as the cause, but as a response to what was already missing.
+          Kizzuna explores both halves of that story through the documentary <em>Disconnected</em>
+          and our live campus events.
+        </p>
+        <div class="theme-tags">
+          <span class="theme-tag">Lost Childhood Space</span>
+          <span class="theme-tag">Free Play &amp; Exploration</span>
+          <span class="theme-tag">Digital Displacement</span>
+          <span class="theme-tag">Reclaiming Connection</span>
+          <span class="theme-tag">Real-World Community</span>
+        </div>
+        <div style="margin-top:2.5rem;">
+          <a href="film.html" class="btn btn--ghost">
+            About the Film
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn__arrow"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 · STATS / THE REALITY
+     [MOTION] Numbers count up as they enter the viewport.
+     Dark amber glow on cards on hover.
+     No images needed — let the numbers speak.
+     ============================================================ -->
+<section class="section bg-cream section--light">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:4rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">Why This Matters Now</p>
+      <h2 class="display-md">The numbers behind<br>both stories.</h2>
+      <svg class="sketch-svg sketch-heading-underline" viewBox="0 0 220 12" aria-hidden="true">
+        <path class="sketch-path" d="M4,7 Q55,3 110,8 Q165,3 216,7" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="stat-card reveal">
+        <div class="stat-card__number">
+          <span data-count="12" data-suffix="h">0h</span>
+        </div>
+        <p class="stat-card__label">Hours of free time the average American child has lost per week since 1981 — mostly from unstructured outdoor play. This happened before anyone had a smartphone.</p>
+      </div>
+
+      <div class="stat-card reveal">
+        <div class="stat-card__number">
+          <span data-count="4.7" data-suffix="h">0h</span>
+        </div>
+        <p class="stat-card__label">Average daily screen time for Gen Z. Not because we love our phones. Because the space the phone promises — connection, belonging, somewhere to go — stopped existing anywhere else.</p>
+      </div>
+
+      <div class="stat-card reveal">
+        <div class="stat-card__number">
+          <span data-count="73" data-suffix="%">0%</span>
+        </div>
+        <p class="stat-card__label">Of college students report feeling overwhelmed. They're carrying two things at once — and most of them don't have a word for either one.</p>
+      </div>
+
+    </div>
+
+    <div class="text-center reveal" style="margin-top:3rem;">
+      <p class="body text-muted">
+        Two things happened to this generation. Most people only talk about one of them.<br>
+        That's where we start.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 · SPEAKING EVENT PREVIEW
+     [IMAGE] Full-width dark background image: a speaker on stage,
+     audience in warm light, or a discussion circle. Cinematic,
+     low-key lighting. Text overlays on right half.
+     [MOTION] Content fades in over image on scroll.
+     ============================================================ -->
+<section class="cinematic section" style="min-height:600px;">
+  <div class="cinematic__bg">
+    <div class="img-frame__placeholder" style="height:100%;background:radial-gradient(ellipse 60% 80% at 80% 50%, rgba(59,122,103,0.18), transparent 60%), var(--bg-mid);">
+      <!-- [IMAGE] Speaking event photo — warm audience glow, intimate setting -->
+    </div>
+    <div class="cinematic__overlay" style="background:linear-gradient(to right,rgba(10,13,11,0.95) 40%,rgba(10,13,11,0.55) 100%);"></div>
+  </div>
+  <div class="cinematic__content container">
+    <div style="max-width:560px;" class="reveal">
+      <p class="label text-amber" style="margin-bottom:1rem;">Live on Campus</p>
+      <h2 class="display-md" style="margin-bottom:1.5rem;">
+        A conversation,<br>not a presentation.
+      </h2>
+      <p class="body-lg text-muted" style="margin-bottom:1.75rem;">
+        Our speaking events are led by people the same age as your students.
+        We use humor, personal stories, and honest reflection to open a dialogue
+        about something every student is quietly living — but rarely discussing.
+      </p>
+      <ul class="checklist" style="margin-bottom:2.5rem;">
+        <li class="checklist__item">
+          <div class="checklist__check"></div>
+          Starts before the phone — with the spaces already disappearing
+        </li>
+        <li class="checklist__item">
+          <div class="checklist__check"></div>
+          Peer-to-peer tone — no lectures, no judgment
+        </li>
+        <li class="checklist__item">
+          <div class="checklist__check"></div>
+          Research-backed, emotionally grounded
+        </li>
+        <li class="checklist__item">
+          <div class="checklist__check"></div>
+          Pairs with film screening or stands alone
+        </li>
+      </ul>
+      <a href="speaking.html" class="btn btn--outline">Learn About Speaking Events</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 · PULL QUOTE / EMOTIONAL BEAT
+     [MOTION] Quote fades in slow, centered on screen.
+     Section transitions from dark to slightly warm dark.
+     No images — pure text moment.
+     ============================================================ -->
+<section class="section bg-warm section--light">
+  <div class="container--narrow">
+    <div class="reveal">
+      <div class="pull-quote">
+        <p class="pull-quote__text">
+          "We grew up without the spaces where childhood happens.
+          Then the phone arrived and said: here's somewhere to go.
+          We're trying to understand both of those things —
+          because you can't fix one without the other."
+        </p>
+        <p class="pull-quote__attr">— The Kizzuna Team</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 · TESTIMONIALS
+     [MOTION] Fade in staggered from left.
+     ============================================================ -->
+<section class="section bg-warm section--light">
+  <div class="container">
+
+    <div class="text-center reveal" style="margin-bottom:4rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">From Campuses Like Yours</p>
+      <h2 class="display-md">What they're saying.</h2>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "Our students were fully present for the first time in years.
+          No one was on their phones. That tells you everything."
+        </p>
+        <p class="testimonial__author">Director of Student Life</p>
+        <p class="testimonial__org">Large Public University, Midwest</p>
+      </div>
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "I came in skeptical — I've seen a lot of wellness programming.
+          This one actually hit different. The humor, the honesty,
+          the peer connection. Students were still talking about it a week later."
+        </p>
+        <p class="testimonial__author">Campus Programming Board Chair</p>
+        <p class="testimonial__org">Private Liberal Arts College</p>
+      </div>
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "It addressed the thing we'd been dancing around for two years
+          without knowing how to approach it. Disconnected gave us the language."
+        </p>
+        <p class="testimonial__author">Dean of Students</p>
+        <p class="testimonial__org">Urban Research University</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 9 · FINAL CTA
+     [IMAGE] Full-bleed cinematic background — warm amber light,
+     expansive landscape or quiet moment. Minimal, hopeful feel.
+     [MOTION] CTA block fades up over image.
+     ============================================================ -->
+<section class="cinematic section text-center" style="min-height:520px;display:flex;align-items:center;">
+  <div class="cinematic__bg">
+    <div class="img-frame__placeholder" style="height:100%;background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59,122,103,0.15), transparent 70%), var(--bg-deep);">
+      <!-- [IMAGE] Hopeful, expansive wide shot — sunrise, campus, open field -->
+    </div>
+    <div class="cinematic__overlay"></div>
+  </div>
+  <div class="cinematic__content container reveal">
+    <p class="label text-amber" style="margin-bottom:1.25rem;">Ready to Bring Kizzuna to Your Campus?</p>
+    <h2 class="display-lg" style="margin-bottom:1.5rem;max-width:800px;margin-inline:auto;">
+      Your students are already feeling this.<br>
+      Give them a space to talk about it.
+    </h2>
+    <p class="subhead text-muted" style="max-width:580px;margin-inline:auto;margin-bottom:3rem;">
+      We work with student life offices, programming boards, counseling centers,
+      and academic departments to create meaningful, well-attended events.
+    </p>
+    <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;">
+      <a href="book.html" class="btn btn--primary">
+        Book an Event
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="about.html" class="btn btn--outline">Meet the Team</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+
+      <div>
+        <div class="footer__brand-name">Kizzuna</div>
+        <p class="footer__tagline">
+          A youth-led documentary film and speaking initiative about reclaiming
+          the spaces where real life — and real connection — happens.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">&#9675;</a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">&#9651;</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Navigate</p>
+        <ul class="footer__links">
+          <li><a href="film.html"     class="footer__link">The Film</a></li>
+          <li><a href="speaking.html" class="footer__link">Speaking</a></li>
+          <li><a href="about.html"    class="footer__link">About Us</a></li>
+          <li><a href="book.html"     class="footer__link">Book Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">For Campuses</p>
+        <ul class="footer__links">
+          <li><a href="book.html#formats"   class="footer__link">Event Formats</a></li>
+          <li><a href="book.html#logistics" class="footer__link">Logistics &amp; Pricing</a></li>
+          <li><a href="book.html#faq"       class="footer__link">FAQ</a></li>
+          <li><a href="book.html"           class="footer__link">Booking Inquiry</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Contact</p>
+        <ul class="footer__links">
+          <li><a href="mailto:disconnected2025@gmail.com" class="footer__link">disconnected2025@gmail.com</a></li>
+          <li><span class="footer__link" style="cursor:default;">Press &amp; Media Inquiries Welcome</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2025 Kizzuna. A youth-led initiative.</p>
+      <p class="text-muted">Made by the generation that grew up online.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

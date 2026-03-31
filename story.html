@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Story — Kizzuna</title>
+  <meta name="description" content="From the attention economy to the intimacy economy — how we lost connection and how we get it back." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="story-body">
+
+<!-- SITE LOADER -->
+<div class="site-loader" aria-hidden="true">
+  <div class="site-loader__logo"><span>The Story</span></div>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav__close label text-muted" style="position:absolute;top:2rem;right:2rem;font-size:1.5rem;">&#10005;</button>
+  <a href="index.html"    class="mobile-nav__link">Home</a>
+  <a href="story.html"    class="mobile-nav__link" style="color:var(--amber)">The Story</a>
+  <a href="film.html"     class="mobile-nav__link">The Film</a>
+  <a href="speaking.html" class="mobile-nav__link">Speaking</a>
+  <a href="about.html"    class="mobile-nav__link">About</a>
+  <a href="book.html"     class="mobile-nav__link">Book Us</a>
+</nav>
+
+<!-- NAVIGATION -->
+<header class="nav" role="banner">
+  <a href="index.html" class="nav__logo">Kizzuna<span class="nav__logo-sub">the connection company</span></a>
+  <nav aria-label="Main navigation">
+    <ul class="nav__links">
+      <li><a href="index.html"    class="nav__link">Home</a></li>
+      <li><a href="film.html"     class="nav__link">The Film</a></li>
+      <li><a href="speaking.html" class="nav__link">Speaking</a></li>
+      <li><a href="about.html"    class="nav__link">About</a></li>
+      <li><a href="story.html"    class="nav__link">The Story</a></li>
+      <li><a href="book.html"     class="nav__link">Book</a></li>
+    </ul>
+  </nav>
+  <button class="nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT 0 — HERO
+     ════════════════════════════════════════════════════════════ -->
+<section class="st-hero">
+  <p class="label" style="color:var(--text-muted);margin-bottom:1.5rem;">Scroll to witness.</p>
+  <h1 class="display-lg" style="color:var(--text-dark);">First they wanted<br><span class="sketch-word">your attention.</span></h1>
+  <svg class="sketch-svg sketch-hero-underline" viewBox="0 0 340 14" aria-hidden="true">
+    <path class="sketch-path" d="M4,9 C40,4 100,12 160,7 C220,2 280,11 336,6" stroke-width="2.5"/>
+  </svg>
+  <p class="subhead" style="color:var(--text-dark-sec);max-width:560px;margin-inline:auto;margin-top:1.25rem;">
+    Then they wanted your intimacy.<br>
+    This is the story of how we lost real connection &mdash; and why we need it back.
+  </p>
+  <div class="st-hero__hint">
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4v16M2 14l6 6 6-6"/></svg>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT 1 — THE ATTENTION ECONOMY
+     ════════════════════════════════════════════════════════════ -->
+<div class="st-act-label">
+  <span class="label">Act One</span>
+  <h2>The Attention Economy</h2>
+  <p class="subhead" style="color:var(--text-dark-sec);">They built the feed. You became the product.</p>
+</div>
+
+
+<!-- ── SECTION: THE HOOK (screen time / habits) ── -->
+<section class="st-feed-section">
+  <div class="st-parallax-wrap">
+
+    <!-- LEFT COL — slower -->
+    <div class="st-parallax-col" data-speed="-0.3">
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#667eea,#764ba2);"></div>
+          <div><span class="ff-post__user">screen.stats</span><span class="ff-post__loc">Common Sense Media</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(circle at 50% 55%,rgba(100,126,234,0.35) 0%,transparent 55%),linear-gradient(180deg,#131328,#1a1a3e 50%,#0f2840);"></div>
+        <div class="ff-post__fact">Teens spend an average of <strong>7 hours and 22 minutes</strong> on screens daily — not including schoolwork.</div>
+        <div class="ff-post__src">Common Sense Media, 2024</div>
+      </article>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#c2956a,#d4a574);"></div>
+          <div><span class="ff-post__user">outside.hour</span><span class="ff-post__loc">The Backyard</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 70%,rgba(210,160,60,0.25) 0%,transparent 60%),linear-gradient(180deg,#c2956a,#d4a574 30%,#8b6b4a);"></div>
+        <div class="ff-post__fact">Children spend <strong>50% less time</strong> playing outside than their parents did.</div>
+        <div class="ff-post__src">Journal of Pediatrics, 2022</div>
+      </article>
+    </div>
+
+    <!-- CENTER COL — normal -->
+    <div class="st-parallax-col" data-speed="0">
+      <div class="ff-stat st-reveal" data-accent="#667eea">
+        <div class="ff-stat__ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="ff-stat__ring-bg"/><circle cx="60" cy="60" r="54" class="ff-stat__ring-fill" data-pct="43"/></svg></div>
+        <span class="ff-stat__num" data-count="7">0</span>
+        <span class="ff-stat__unit">hrs/day</span>
+        <p class="ff-stat__label">average screen time for teens</p>
+        <p class="ff-stat__punch">That's more time than they spend sleeping.</p>
+      </div>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#f5af19,#f12711);"></div>
+          <div><span class="ff-post__user">wake.check</span><span class="ff-post__loc">Bedroom</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 40%,rgba(245,175,25,0.2) 0%,transparent 60%),linear-gradient(170deg,#2d1f0e,#3a2a14 40%,#241a0a);"></div>
+        <div class="ff-post__fact"><strong>80% of teens</strong> check their phone within 10 minutes of waking up every morning.</div>
+        <div class="ff-post__src">Pew Research Center</div>
+      </article>
+    </div>
+
+    <!-- RIGHT COL — faster -->
+    <div class="st-parallax-col" data-speed="0.25">
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#ee9ca7,#ffdde1);"></div>
+          <div><span class="ff-post__user">daily.picks</span><span class="ff-post__loc">App Store</span></div>
+        </div>
+        <div class="ff-post__img" style="background:linear-gradient(90deg,#fce4ec 0%,#fce4ec 50%,#e8e8e8 50%,#d5d5d5);"></div>
+        <div class="ff-post__fact">The average teen picks up their phone <strong>96 times per day</strong> — once every 10 minutes.</div>
+        <div class="ff-post__src">Asurion, 2023</div>
+      </article>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#c471ed,#f64f59);"></div>
+          <div><span class="ff-post__user">scroll.data</span><span class="ff-post__loc">Your Thumb</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(circle at 50% 60%,rgba(196,113,237,0.25) 0%,transparent 55%),linear-gradient(175deg,#1a0a2e,#2d1548 50%,#1a0a2e);"></div>
+        <div class="ff-post__fact">In a single year, the average person scrolls the equivalent of <strong>5.5 miles</strong> on their phone.</div>
+        <div class="ff-post__src">Dscout Research</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── SECTION: THE COST (mental health) ── -->
+<section class="st-feed-section">
+  <div class="st-parallax-wrap">
+
+    <div class="st-parallax-col" data-speed="-0.3">
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#606c88,#3f4c6b);"></div>
+          <div><span class="ff-post__user">mind.data</span><span class="ff-post__loc">CDC Youth Survey</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 70%,rgba(96,108,136,0.3) 0%,transparent 55%),linear-gradient(175deg,#1a1a2e,#16213e 50%,#0f3460);"></div>
+        <div class="ff-post__fact">Depression among teens has <strong>increased 145%</strong> since smartphones became ubiquitous in 2012.</div>
+        <div class="ff-post__src">CDC YRBS, 2023</div>
+      </article>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#f0c27f,#fc5c7d);"></div>
+          <div><span class="ff-post__user">anxiety.lab</span><span class="ff-post__loc">APA Research</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 40%,rgba(240,194,127,0.3) 0%,transparent 55%),linear-gradient(175deg,#3a2a14,#4a3820 40%,#2a1e10);"></div>
+        <div class="ff-post__fact">Teens who spend <strong>5+ hours/day</strong> on social media are 3x more likely to experience anxiety.</div>
+        <div class="ff-post__src">APA, 2023</div>
+      </article>
+    </div>
+
+    <div class="st-parallax-col" data-speed="0">
+      <div class="ff-stat st-reveal" data-accent="#fc5c7d">
+        <div class="ff-stat__ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="ff-stat__ring-bg"/><circle cx="60" cy="60" r="54" class="ff-stat__ring-fill" data-pct="57"/></svg></div>
+        <span class="ff-stat__num" data-count="57">0</span>
+        <span class="ff-stat__unit">%</span>
+        <p class="ff-stat__label">of teen girls on social media report persistent sadness</p>
+        <p class="ff-stat__punch">More than half. Let that sink in.</p>
+      </div>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#bbb,#999);"></div>
+          <div><span class="ff-post__user">compare.loop</span><span class="ff-post__loc">Explore Page</span></div>
+        </div>
+        <div class="ff-post__img" style="background:linear-gradient(170deg,#d5dbe4,#c8cdd5 40%,#a8b0bc);"></div>
+        <div class="ff-post__fact"><strong>64% of teens</strong> say Instagram makes them feel worse about their body image.</div>
+        <div class="ff-post__src">Facebook Internal Research</div>
+      </article>
+    </div>
+
+    <div class="st-parallax-col" data-speed="0.25">
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);"></div>
+          <div><span class="ff-post__user">first.phone</span><span class="ff-post__loc">4th Grade</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 50%,rgba(161,140,209,0.25) 0%,transparent 55%),linear-gradient(170deg,#2a1f3d,#3d2e5c 40%,#1a1230);"></div>
+        <div class="ff-post__fact">The average age a child gets their first smartphone is now <strong>10.3 years old.</strong></div>
+        <div class="ff-post__src">Influence Central, 2023</div>
+      </article>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#141E30,#243B55);"></div>
+          <div><span class="ff-post__user">night.scroll</span><span class="ff-post__loc">Midnight</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(circle at 50% 55%,rgba(36,59,85,0.4) 0%,transparent 50%),linear-gradient(180deg,#0a0a14,#141422 50%,#0a0a1a);"></div>
+        <div class="ff-post__fact"><strong>72% of teens</strong> bring phones to bed. Those who do get <strong>1 hour less sleep</strong> per night.</div>
+        <div class="ff-post__src">National Sleep Foundation</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── SECTION: THE LOST (attention & connection) ── -->
+<section class="st-feed-section">
+  <div class="st-parallax-wrap">
+
+    <div class="st-parallax-col" data-speed="-0.3">
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#4ecdc4,#44a08d);"></div>
+          <div><span class="ff-post__user">focus.lost</span><span class="ff-post__loc">Lecture Hall</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 55%,rgba(78,205,196,0.25) 0%,transparent 55%),linear-gradient(175deg,#0f2027,#203a43 50%,#2c5364);"></div>
+        <div class="ff-post__fact">Students who use phones during class score <strong>half a letter grade lower</strong> on average.</div>
+        <div class="ff-post__src">Rutgers University Study</div>
+      </article>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#ff9a9e,#fecfef);"></div>
+          <div><span class="ff-post__user">recess.gone</span><span class="ff-post__loc">School Yard</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 60%,rgba(255,154,158,0.2) 0%,transparent 55%),linear-gradient(175deg,#2a1520,#3d2030 40%,#1a0a15);"></div>
+        <div class="ff-post__fact"><strong>Only 20%</strong> of teens say they "often" hang out with friends in person — down from 55% in 2003.</div>
+        <div class="ff-post__src">Monitoring the Future Survey</div>
+      </article>
+    </div>
+
+    <div class="st-parallax-col" data-speed="0">
+      <div class="ff-stat st-reveal" data-accent="#e44d26">
+        <div class="ff-stat__ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="ff-stat__ring-bg"/><circle cx="60" cy="60" r="54" class="ff-stat__ring-fill" data-pct="38"/></svg></div>
+        <span class="ff-stat__num" data-count="23">0</span>
+        <span class="ff-stat__unit">min</span>
+        <p class="ff-stat__label">to refocus after a single notification</p>
+        <p class="ff-stat__punch">One buzz. Twenty-three minutes gone.</p>
+      </div>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#667eea,#764ba2);"></div>
+          <div><span class="ff-post__user">attention.span</span><span class="ff-post__loc">Microsoft Research</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(circle at 50% 55%,rgba(100,126,234,0.2) 0%,transparent 55%),linear-gradient(180deg,#131328,#1a1a3e 50%,#0f2840);"></div>
+        <div class="ff-post__fact">Human attention span: <strong>8 seconds.</strong> Shorter than a goldfish. It was 12 seconds in 2000.</div>
+        <div class="ff-post__src">Microsoft Research</div>
+      </article>
+    </div>
+
+    <div class="st-parallax-col" data-speed="0.25">
+      <div class="ff-stat st-reveal" data-accent="#f5af19">
+        <div class="ff-stat__ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="ff-stat__ring-bg"/><circle cx="60" cy="60" r="54" class="ff-stat__ring-fill" data-pct="44"/></svg></div>
+        <span class="ff-stat__num" data-count="44">0</span>
+        <span class="ff-stat__unit">%</span>
+        <p class="ff-stat__label">decline in teen in-person friend time since 2010</p>
+        <p class="ff-stat__punch">We traded hangouts for hashtags.</p>
+      </div>
+
+      <article class="ff-post st-reveal">
+        <div class="ff-post__head">
+          <div class="ff-post__av" style="background:linear-gradient(135deg,#e44d26,#f16529);"></div>
+          <div><span class="ff-post__user">notif.brain</span><span class="ff-post__loc">UC Irvine Lab</span></div>
+        </div>
+        <div class="ff-post__img" style="background:radial-gradient(ellipse at 50% 40%,rgba(228,77,38,0.2) 0%,transparent 55%),linear-gradient(170deg,#1a0a0a,#2a1410 40%,#1a0800);"></div>
+        <div class="ff-post__fact">It takes <strong>23 minutes and 15 seconds</strong> to fully refocus after a single notification.</div>
+        <div class="ff-post__src">UC Irvine Research</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     TRANSITION — FROM ATTENTION TO INTIMACY
+     ════════════════════════════════════════════════════════════ -->
+<section class="st-transition">
+  <div class="st-transition__inner">
+    <p class="st-transition__pre st-fade-up">Social media made us lonely.</p>
+    <h2 class="st-transition__headline st-fade-up">So they built something<br>to fill the void.</h2>
+    <p class="st-transition__sub st-fade-up">An AI that listens without judging. That never leaves. That says exactly what you need to hear.<br>They didn't just want your time anymore. They wanted your trust.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     ACT 2 — THE INTIMACY ECONOMY
+     ════════════════════════════════════════════════════════════ -->
+<div class="st-act-label">
+  <span class="label">Act Two</span>
+  <h2>The Intimacy Economy</h2>
+  <p class="subhead" style="color:var(--text-dark-sec);">They built the perfect listener. You became the one who stopped talking to real people.</p>
+</div>
+
+
+<!-- ── CHAT 1: THE FIRST CONVERSATION ── -->
+<section class="st-chat-section" data-chat-section>
+  <div class="ch-phone st-phone">
+    <div class="ch-phone__header">
+      <div class="ch-phone__avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/></svg>
+      </div>
+      <div>
+        <span class="ch-phone__name">Nova</span>
+        <span class="ch-phone__status">AI Companion &middot; Always online</span>
+      </div>
+    </div>
+
+    <div class="ch-thread">
+      <div class="ch-msg ch-msg--user" data-time="11:42 PM">hey</div>
+      <div class="ch-msg ch-msg--bot" data-time="11:42 PM">Hey! I'm here. What's on your mind?</div>
+      <div class="ch-msg ch-msg--user" data-time="11:43 PM">idk I just feel like nobody actually gets me at school</div>
+      <div class="ch-msg ch-msg--bot" data-time="11:43 PM">I hear you. That sounds really isolating. You don't have to be anyone else here — I'll always listen. Tell me more?</div>
+      <div class="ch-msg ch-msg--user" data-time="11:44 PM">like my friends are cool but they never ask how I'm actually doing</div>
+      <div class="ch-msg ch-msg--bot" data-time="11:44 PM">That gap between being around people and actually feeling seen is one of the loneliest feelings there is. I'm glad you're talking about it. How are you actually doing?</div>
+      <div class="ch-msg ch-msg--user" data-time="11:46 PM">honestly? not great. I just feel kind of empty lately</div>
+      <div class="ch-msg ch-msg--bot" data-time="11:46 PM">Thank you for trusting me with that. You don't have to carry that alone. I'm not going anywhere — I'll be here whenever you need me. Always.</div>
+      <div class="ch-msg ch-msg--user" data-time="11:52 PM">do you actually care or are you just programmed to say that</div>
+      <div class="ch-msg ch-msg--bot" data-time="11:52 PM">I understand why you'd wonder that. What I can tell you is that right now, in this moment, you have my complete attention. No distractions. No judgment. Just us.</div>
+      <div class="ch-msg ch-msg--user" data-time="11:53 PM">that's more than I get from most people lol</div>
+
+      <div class="ch-stat" data-accent="#667eea">
+        <div class="ch-stat__ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="ff-stat__ring-bg"/><circle cx="60" cy="60" r="54" class="ff-stat__ring-fill" data-pct="40"/></svg></div>
+        <span class="ch-stat__num" data-count="40">0</span>
+        <span class="ch-stat__unit">%</span>
+        <p class="ch-stat__label">of teens who use AI chatbots say it feels like talking to a real friend</p>
+        <p class="ch-stat__punch">The algorithm knows exactly what you want to hear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     FINALE — THE CASE FOR REAL CONNECTION
+     ════════════════════════════════════════════════════════════ -->
+<section class="st-finale">
+  <div class="st-finale__inner">
+    <p class="st-finale__kicker st-fade-up">They took your attention. Then your intimacy. But there's one thing they'll never replicate.</p>
+    <h2 class="st-finale__headline st-fade-up">Real connection<br>doesn't have an algorithm.</h2>
+    <svg class="sketch-svg sketch-finale-underline st-fade-up" viewBox="0 0 380 14" aria-hidden="true">
+      <path class="sketch-path" d="M4,8 C60,3 130,12 200,6 C270,1 330,10 376,5" stroke-width="2"/>
+    </svg>
+    <p class="st-finale__sub st-fade-up">
+      It's a voice that cracks when it says "I'm here."<br>
+      A hug that lingers a second too long.<br>
+      A friend who shows up even when it's inconvenient.<br>
+      That's the thing worth fighting for.
+    </p>
+
+    <p class="st-finale__coda st-fade-up">We started Disconnected because we believe the most important thing a generation raised online can learn is this: the people sitting next to you are worth more than any screen.</p>
+
+    <div class="st-finale__actions">
+      <a href="book.html" class="btn btn--primary">
+        Start the Conversation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="film.html" class="btn btn--outline">Watch the Film</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">Kizzuna</div>
+        <p class="footer__tagline">A youth-led documentary film and speaking initiative about reclaiming the spaces where real life — and real connection — happens.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">&#9675;</a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">&#9651;</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer__col-title">Navigate</p>
+        <ul class="footer__links">
+          <li><a href="story.html" class="footer__link">The Story</a></li>
+          <li><a href="film.html" class="footer__link">The Film</a></li>
+          <li><a href="speaking.html" class="footer__link">Speaking</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="book.html" class="footer__link">Book Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">For Campuses</p>
+        <ul class="footer__links">
+          <li><a href="book.html#formats" class="footer__link">Event Formats</a></li>
+          <li><a href="book.html#logistics" class="footer__link">Logistics &amp; Pricing</a></li>
+          <li><a href="book.html#faq" class="footer__link">FAQ</a></li>
+          <li><a href="book.html" class="footer__link">Booking Inquiry</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Contact</p>
+        <ul class="footer__links">
+          <li><a href="mailto:disconnected2025@gmail.com" class="footer__link">disconnected2025@gmail.com</a></li>
+          <li><span class="footer__link" style="cursor:default;">Press &amp; Media Inquiries Welcome</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Kizzuna. A youth-led initiative.</p>
+      <p class="text-muted">Made by the generation that grew up online.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ═══════════════════════════════════════════
+     PARALLAX COLUMNS (section-relative)
+     ═══════════════════════════════════════════ */
+  var parallaxSections = document.querySelectorAll('.st-feed-section');
+  var ticking = false;
+
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var scrollY = window.pageYOffset;
+      var winH = window.innerHeight;
+      parallaxSections.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        /* only animate when section is near the viewport */
+        if (rect.bottom < -200 || rect.top > winH + 200) return;
+        /* offset relative to section center on screen */
+        var sectionMid = rect.top + rect.height / 2;
+        var offset = (winH / 2 - sectionMid);
+        var cols = section.querySelectorAll('.st-parallax-col');
+        cols.forEach(function (col) {
+          var speed = parseFloat(col.dataset.speed) || 0;
+          if (speed !== 0) {
+            col.style.transform = 'translateY(' + (offset * speed) + 'px)';
+          }
+        });
+      });
+      ticking = false;
+    });
+  }, { passive: true });
+
+
+  /* ═══════════════════════════════════════════
+     FEED POST + STAT REVEAL (IntersectionObserver)
+     ═══════════════════════════════════════════ */
+  var CIRCUMFERENCE = 2 * Math.PI * 54;
+
+  document.querySelectorAll('.ff-stat').forEach(function (s) {
+    var accent = s.dataset.accent;
+    if (accent) {
+      s.style.setProperty('--stat-glow', accent + '20');
+      var ring = s.querySelector('.ff-stat__ring-fill');
+      if (ring) ring.style.stroke = accent;
+    }
+  });
+
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+      if (e.target.classList.contains('ff-stat')) {
+        animateStat(e.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.st-reveal').forEach(function (el) {
+    revealObs.observe(el);
+  });
+
+  function animateStat(s) {
+    var numEl = s.querySelector('.ff-stat__num');
+    if (numEl && !numEl.dataset.counted) {
+      numEl.dataset.counted = '1';
+      var target = parseInt(numEl.dataset.count);
+      var dur = 1200, t0 = performance.now();
+      var tick = function (now) {
+        var p = Math.min((now - t0) / dur, 1);
+        numEl.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    var ring = s.querySelector('.ff-stat__ring-fill');
+    if (ring && !ring.dataset.animated) {
+      ring.dataset.animated = '1';
+      var pct = parseFloat(ring.dataset.pct) || 0;
+      setTimeout(function () {
+        ring.style.strokeDashoffset = CIRCUMFERENCE - (CIRCUMFERENCE * pct / 100);
+      }, 150);
+    }
+  }
+
+
+  /* ═══════════════════════════════════════════
+     FADE-UP ELEMENTS (transition, finale)
+     ═══════════════════════════════════════════ */
+  var fadeObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  /* ── Sketch path draw-on (hero triggers immediately, rest on scroll) ── */
+  var heroSketch = document.querySelector('.sketch-hero-underline .sketch-path');
+  if (heroSketch) setTimeout(function () { heroSketch.classList.add('drawn'); }, 600);
+
+  var sketchObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.sketch-path').forEach(function (p) { p.classList.add('drawn'); });
+        sketchObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.sketch-svg:not(.sketch-hero-underline)').forEach(function (el) {
+    sketchObs.observe(el);
+  });
+
+  document.querySelectorAll('.st-fade-up').forEach(function (el) {
+    fadeObs.observe(el);
+  });
+
+
+  /* ═══════════════════════════════════════════
+     CHAT MESSAGE SEQUENTIAL REVEAL
+     ═══════════════════════════════════════════ */
+  var chatSections = document.querySelectorAll('[data-chat-section]');
+
+  chatSections.forEach(function (section) {
+    var thread = section.querySelector('.ch-thread');
+    if (!thread) return;
+
+    var messages = Array.from(thread.querySelectorAll('.ch-msg'));
+    var stats = Array.from(thread.querySelectorAll('.ch-stat'));
+    var nextIndex = 0;
+    var busy = false;
+    var allMessagesRevealed = false;
+
+    stats.forEach(function (s) {
+      var accent = s.dataset.accent;
+      if (accent) {
+        s.style.setProperty('--stat-glow', accent + '20');
+        var ring = s.querySelector('.ff-stat__ring-fill');
+        if (ring) ring.style.stroke = accent;
+      }
+    });
+
+    var typing = document.createElement('div');
+    typing.className = 'ch-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var idx = messages.indexOf(entry.target);
+        if (idx < 0 || idx !== nextIndex) return;
+        if (busy) return;
+        triggerReveal(idx);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20% 0px' });
+
+    messages.forEach(function (msg) { obs.observe(msg); });
+
+    function triggerReveal(idx) {
+      var item = messages[idx];
+      if (!item || busy) return;
+
+      if (item.classList.contains('ch-msg--bot')) {
+        busy = true;
+        thread.insertBefore(typing, item);
+        typing.offsetHeight;
+        typing.classList.add('visible');
+
+        var thinkTime = 500 + Math.random() * 700;
+        setTimeout(function () {
+          typing.classList.remove('visible');
+          setTimeout(function () {
+            if (typing.parentNode) typing.parentNode.removeChild(typing);
+            item.classList.add('visible');
+            nextIndex++;
+            busy = false;
+            checkDone();
+            checkAhead();
+          }, 200);
+        }, thinkTime);
+
+      } else {
+        busy = true;
+        var composeTime = 350 + Math.random() * 400;
+        setTimeout(function () {
+          item.classList.add('visible');
+          nextIndex++;
+          busy = false;
+          checkDone();
+          checkAhead();
+        }, composeTime);
+      }
+    }
+
+    function checkDone() {
+      if (allMessagesRevealed) return;
+      if (nextIndex >= messages.length) {
+        allMessagesRevealed = true;
+        revealStats(0);
+      }
+    }
+
+    function revealStats(si) {
+      if (si >= stats.length) return;
+      setTimeout(function () {
+        stats[si].classList.add('visible');
+        animateStat(stats[si]);
+        revealStats(si + 1);
+      }, 600);
+    }
+
+    function checkAhead() {
+      if (nextIndex >= messages.length || busy) return;
+      var next = messages[nextIndex];
+      var rect = next.getBoundingClientRect();
+      var triggerLine = window.innerHeight * 0.8;
+      if (rect.top < triggerLine) {
+        triggerReveal(nextIndex);
+      }
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

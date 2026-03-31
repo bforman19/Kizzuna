@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Film — Kizzuna</title>
+  <meta name="description" content="Disconnected is a youth-led documentary about digital wellness, attention, and what we find when we look up from our screens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-transition">
+
+<!-- SITE LOADER -->
+<div class="site-loader" aria-hidden="true">
+  <div class="site-loader__logo"><span>The Film</span></div>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav__close label text-muted" style="position:absolute;top:2rem;right:2rem;font-size:1.5rem;">✕</button>
+  <a href="index.html"    class="mobile-nav__link">Home</a>
+  <a href="film.html"     class="mobile-nav__link">The Film</a>
+  <a href="speaking.html" class="mobile-nav__link">Speaking</a>
+  <a href="about.html"    class="mobile-nav__link">About</a>
+  <a href="story.html"    class="mobile-nav__link">The Story</a>
+  <a href="book.html"     class="mobile-nav__link" style="color:var(--amber)">Book Us</a>
+</nav>
+
+<!-- NAVIGATION -->
+<header class="nav" role="banner">
+  <a href="index.html" class="nav__logo">Kizzuna<span class="nav__logo-sub">the connection company</span></a>
+  <nav aria-label="Main navigation">
+    <ul class="nav__links">
+      <li><a href="index.html"    class="nav__link">Home</a></li>
+      <li><a href="film.html"     class="nav__link">The Film</a></li>
+      <li><a href="speaking.html" class="nav__link">Speaking</a></li>
+      <li><a href="about.html"    class="nav__link">About</a></li>
+      <li><a href="story.html"    class="nav__link">The Story</a></li>
+      <li><a href="book.html"     class="nav__link">Book</a></li>
+    </ul>
+  </nav>
+  <button class="nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+
+<!-- ============================================================
+     PAGE HERO
+     [IMAGE] Full-screen background: iconic film still —
+     a person alone at a window, phone face-down beside them.
+     Warm, melancholy, beautiful. Cinematic depth.
+     [MOTION] Title and badge fade up on load.
+     ============================================================ -->
+<section class="hero" aria-label="Film hero">
+  <div class="hero__bg hero__bg--placeholder" data-parallax="0.25">
+    <!-- <img src="images/film-hero.jpg" alt="" /> -->
+  </div>
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content container" style="max-width:1280px;">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-line"></div>
+      <span class="label text-amber">Feature Documentary</span>
+    </div>
+    <h1 class="display-xl hero__title">
+      <em>Disconnected</em>
+    </h1>
+    <p class="subhead hero__subtitle">
+      A film about the generation that grew up without the spaces childhood needs —
+      and what they found when phones came to fill the void.
+    </p>
+    <div class="hero__actions">
+      <a href="book.html" class="btn btn--primary">Screen This Film on Campus</a>
+      <a href="#synopsis" class="btn btn--outline">Read the Synopsis</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: PROMO VIDEO
+     Scroll-triggered autoplay — muted by default, sound toggle.
+     ============================================================ -->
+<section class="section bg-void" id="watch" style="padding-block:clamp(4rem,7vw,7rem);">
+  <div class="container" style="max-width:1280px;">
+    <div class="reveal text-center" style="margin-bottom:2.5rem;">
+      <p class="label text-amber" style="letter-spacing:0.2em;">Watch the Promo</p>
+    </div>
+    <div class="promo-player reveal--scale reveal" id="promoPlayer">
+      <video
+        id="promoVideo"
+        class="promo-player__video"
+        src="Videos/Disconnected Promo Vid.mp4"
+        preload="auto"
+        playsinline
+        muted
+      ></video>
+      <button class="promo-player__sound" id="promoSound" aria-label="Unmute video">
+        <svg class="sound-icon sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/>
+          <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        <svg class="sound-icon sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/>
+          <path d="M15.54,8.46a5,5,0,0,1,0,7.07"/>
+          <path d="M19.07,4.93a10,10,0,0,1,0,14.14"/>
+        </svg>
+      </button>
+    </div>
+    <p class="label text-muted text-center" style="margin-top:1.25rem;">Disconnected &middot; Official Promo &middot; 2025</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: LOGLINE / OPENING STATEMENT
+     [MOTION] Slow fade-in, centered. Let the words breathe.
+     ============================================================ -->
+<section class="chapter-intro bg-void" id="synopsis">
+  <div class="container--narrow text-center">
+    <div class="reveal">
+      <div class="badge" style="margin-inline:auto;margin-bottom:2rem;width:fit-content;">
+        <div class="badge__dot"></div>
+        Youth-Made · Honest · Hopeful
+      </div>
+    </div>
+    <h2 class="chapter-intro__quote reveal">
+      Not a warning.<br>
+      Not a panic.<br>
+      A <em>mirror</em>.
+    </h2>
+    <svg class="sketch-svg sketch-heading-underline" viewBox="0 0 220 12" aria-hidden="true">
+      <path class="sketch-path" d="M4,8 C50,3 110,12 170,6 C200,3 212,9 216,7" stroke-width="2.5"/>
+    </svg>
+    <div class="reveal" style="margin-top:3rem;">
+      <p class="subhead text-muted" style="max-width:620px;margin-inline:auto;">
+        <em>Disconnected</em> is a documentary for and by the first generation
+        to grow up without the spaces where childhood used to happen —
+        and then with phones that promised to replace them.
+        It doesn't ask "is technology bad?" It asks something harder:
+        <em style="color:var(--text-primary);">What did we lose before the phone ever arrived?</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: SYNOPSIS + FILM STILL (WIDE)
+     [IMAGE] Full-bleed wide still below the copy — warm evening
+     light, group of young people mid-conversation outdoors,
+     no phones visible. Natural, unposed feeling.
+     [MOTION] Text fades up, image parallaxes slightly upward on scroll.
+     ============================================================ -->
+<section class="section bg-deep">
+  <div class="container">
+    <div class="grid-2" style="gap:clamp(3rem,6vw,8rem);margin-bottom:5rem;">
+
+      <div class="reveal">
+        <div class="divider"></div>
+        <p class="label text-amber" style="margin-bottom:1rem;">Synopsis</p>
+        <h2 class="headline" style="margin-bottom:1.75rem;">What the film is about.</h2>
+        <p class="body-lg text-muted" style="margin-bottom:1.25rem;">
+          <em>Disconnected</em> follows a group of college-age young people as they
+          trace what happened to childhood — the free afternoons, the neighborhood
+          roaming, the third places where identity used to form. And then
+          what happened when phones arrived to fill that vacuum.
+        </p>
+        <p class="body-lg text-muted" style="margin-bottom:1.25rem;">
+          Through personal interviews, honest moments of struggle, and
+          experiments with stepping back from screens, the film asks what
+          we were already missing — and what it actually looks like to
+          rebuild those spaces in a world that's moved on.
+        </p>
+        <p class="body-lg text-muted">
+          It is funny at times. Heavy at others. Always real.
+          And it ends not with answers, but with something more
+          useful: possibility.
+        </p>
+      </div>
+
+      <div class="reveal reveal--right">
+        <div class="divider"></div>
+        <p class="label text-amber" style="margin-bottom:1rem;">Tone</p>
+        <h2 class="headline" style="margin-bottom:1.75rem;">How it feels to watch it.</h2>
+        <ul class="num-list">
+          <li class="num-list__item">
+            <span class="num-list__num">01</span>
+            <div class="num-list__text">
+              <strong>Honest without being harsh.</strong>
+              We start before the phone — with the spaces that were already disappearing.
+              Then we show what phones filled, what they gave, and what they couldn't replace.
+            </div>
+          </li>
+          <li class="num-list__item">
+            <span class="num-list__num">02</span>
+            <div class="num-list__text">
+              <strong>Funny where it's true.</strong>
+              We know the absurdity of our own behavior. The film leans into that.
+              Humor is an entry point — and it earns the harder moments.
+            </div>
+          </li>
+          <li class="num-list__item">
+            <span class="num-list__num">03</span>
+            <div class="num-list__text">
+              <strong>Hopeful where it matters.</strong>
+              Every story in this film is ultimately about agency. Young people
+              discovering they have more control than the systems want them to believe.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Wide Film Still -->
+    <div class="reveal--scale reveal">
+      <div class="img-frame img-frame--cinema" style="aspect-ratio:21/9;border-radius:6px;">
+        <div class="img-frame__placeholder" style="height:100%;">
+          <!-- [IMAGE] Wide establishing shot — cinematic, warm, expansive -->
+          <img src="images/Disc1.JPG" alt="filming 1">
+        </div>
+        <div class="img-frame__overlay"></div>
+      </div>
+      <p class="label text-muted" style="margin-top:1rem;text-align:right;">Still from Disconnected, 2025</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: THEMES — full grid of thematic cards
+     [MOTION] Cards stagger in as grid enters viewport.
+     ============================================================ -->
+<section class="section bg-void">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:4rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">What the Film Explores</p>
+      <h2 class="display-md">The themes.</h2>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9632;</div>
+        <h3 class="format-card__title">Attention &amp; Distraction</h3>
+        <p class="format-card__desc">
+          What does it mean to actually pay attention — to a person, a moment,
+          a thought — in a world designed to fragment focus?
+          The film looks at how our attention became a product,
+          and what it costs us personally.
+        </p>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9651;</div>
+        <h3 class="format-card__title">Burnout &amp; Overstimulation</h3>
+        <p class="format-card__desc">
+          The exhaustion isn't just from school or work.
+          It's from the relentlessness of the feed — the feeling that
+          the world never pauses. We explore what living at that pace
+          does to young minds and bodies.
+        </p>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9675;</div>
+        <h3 class="format-card__title">Social Comparison &amp; Identity</h3>
+        <p class="format-card__desc">
+          Who are we when we're not performing for an audience?
+          The film asks honest questions about self-image, comparison culture,
+          and how a curated online self shapes the way we see ourselves offline.
+        </p>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9679;</div>
+        <h3 class="format-card__title">The Replacement</h3>
+        <p class="format-card__desc">
+          How phones stepped into the vacuum left by lost IRL space —
+          offering connection, stimulation, and somewhere to belong.
+          We look at what that trade-off actually cost, and why it was
+          so easy to accept.
+        </p>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9650;</div>
+        <h3 class="format-card__title">The Spaces We Lost</h3>
+        <p class="format-card__desc">
+          Before the phone — free play, third places, independent exploration,
+          the boredom that turns into creativity. We trace how and why those
+          spaces disappeared from childhood, and what they were doing for us.
+        </p>
+      </div>
+
+      <div class="format-card reveal">
+        <div class="format-card__icon" style="font-size:1.75rem;">&#9671;</div>
+        <h3 class="format-card__title">Possibility &amp; Reclamation</h3>
+        <p class="format-card__desc">
+          The film doesn't end with a problem — it ends with people
+          actively remaking their relationship with technology.
+          Not abandoning it. Using it on their own terms.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: THREE-IMAGE GALLERY (stills)
+     [IMAGE] Three portrait-crop stills from the film —
+     intimate, human, quietly emotional moments.
+     Could be: someone laughing, someone reflecting alone,
+     a group moment of genuine connection.
+     [MOTION] Each image enters at a slight offset on scroll.
+     ============================================================ -->
+<section class="section bg-deep">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3.5rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">From the Film</p>
+      <h2 class="display-md">Stills.</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:1.5rem;align-items:end;" class="stagger">
+
+      <div class="img-frame img-frame--portrait reveal reveal--left" style="margin-top:3rem;">
+        <div class="img-frame__placeholder" style="height:100%;min-height:320px;">
+          <!-- [IMAGE] Intimate portrait still — person looking off-screen, warm light -->
+          <img src="images/Disc2.PNG">
+        </div>
+        <div class="img-frame__overlay"></div>
+      </div>
+
+      <div class="img-frame img-frame--portrait reveal" style="aspect-ratio:3/4.5;">
+        <div class="img-frame__placeholder" style="height:100%;min-height:420px;">
+          <!-- [IMAGE] Centered, emotionally resonant moment — quiet, real -->
+          <img src="images/Disc5.png">
+        </div>
+        <div class="img-frame__overlay"></div>
+      </div>
+
+      <div class="img-frame img-frame--portrait reveal reveal--right" style="margin-top:2rem;">
+        <div class="img-frame__placeholder" style="height:100%;min-height:320px;">
+          <!-- [IMAGE] Group or landscape still — a moment of togetherness or space -->
+          <img src="images/Disc7.png">
+        </div>
+        <div class="img-frame__overlay"></div>
+      </div>
+
+    </div>
+
+    <p class="label text-muted text-center" style="margin-top:2rem;">Production Stills — Disconnected, 2025</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: WHAT AUDIENCES TAKE AWAY
+     [MOTION] Lines appear one at a time, typewriter-style.
+     ============================================================ -->
+<section class="chapter-intro bg-void">
+  <div class="container--narrow">
+    <div class="reveal text-center" style="margin-bottom:4rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">What Viewers Say</p>
+      <h2 class="display-md">The feeling you leave with.</h2>
+    </div>
+
+    <div class="stagger" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+      <div class="pull-quote reveal" style="border-left-color:var(--amber);padding:2rem 2.5rem;">
+        <p class="pull-quote__text">"I'm not alone in feeling this way."</p>
+      </div>
+
+      <div class="pull-quote reveal" style="border-left-color:var(--gold-dim);padding:2rem 2.5rem;margin:0;">
+        <p class="pull-quote__text">"I have more control than I thought."</p>
+      </div>
+
+      <div class="pull-quote reveal" style="border-left-color:var(--terracotta);padding:2rem 2.5rem;margin:0;">
+        <p class="pull-quote__text">"I actually want to try something different."</p>
+      </div>
+
+    </div>
+
+    <div class="reveal text-center" style="margin-top:4rem;">
+      <a href="book.html" class="btn btn--primary">
+        Screen This Film on Campus
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">Kizzuna</div>
+        <p class="footer__tagline">A youth-led documentary film and speaking initiative about reclaiming the spaces where real life — and real connection — happens.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">&#9675;</a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">&#9651;</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer__col-title">Navigate</p>
+        <ul class="footer__links">
+          <li><a href="film.html"     class="footer__link">The Film</a></li>
+          <li><a href="speaking.html" class="footer__link">Speaking</a></li>
+          <li><a href="about.html"    class="footer__link">About Us</a></li>
+          <li><a href="book.html"     class="footer__link">Book Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">For Campuses</p>
+        <ul class="footer__links">
+          <li><a href="book.html#formats"   class="footer__link">Event Formats</a></li>
+          <li><a href="book.html#logistics" class="footer__link">Logistics &amp; Pricing</a></li>
+          <li><a href="book.html#faq"       class="footer__link">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Contact</p>
+        <ul class="footer__links">
+          <li><a href="mailto:disconnected2025@gmail.com" class="footer__link">disconnected2025@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Kizzuna. A youth-led initiative.</p>
+      <p class="text-muted">Made by the generation that grew up online.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
