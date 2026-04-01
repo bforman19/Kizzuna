@@ -494,7 +494,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--text-primary);
   opacity: 0;
   animation: fadeUp 1s var(--ease-out-expo) 0.5s forwards;
-  white-space: nowrap;
 }
 
 .hero__title em {
@@ -1573,6 +1572,10 @@ hr.amber {
 @media (max-width: 480px) {
   .pull-quote { padding: 2rem 1.5rem; }
   .testimonial { padding: 1.75rem; }
+
+  /* Prevent hero text from overflowing on small iOS screens */
+  .display-xl { font-size: clamp(2.25rem, 10vw, 3rem); }
+  .word-swap  { white-space: normal; }
 }
 
 /* ---------- SMOOTH PAGE TRANSITIONS ---------- */
