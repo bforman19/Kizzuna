@@ -497,7 +497,12 @@
         if (tagline) {
           setTimeout(() => {
             tagline.removeAttribute('aria-hidden');
-            tagline.classList.add('hero-tagline--visible');
+            tagline.style.display = 'inline';
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                tagline.classList.add('hero-tagline--visible');
+              });
+            });
           }, 900);
         }
       }

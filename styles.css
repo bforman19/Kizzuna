@@ -494,6 +494,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--text-primary);
   opacity: 0;
   animation: fadeUp 1s var(--ease-out-expo) 0.5s forwards;
+  white-space: nowrap;
 }
 
 .hero__title em {
@@ -1490,6 +1491,7 @@ hr.amber {
   color: var(--text-secondary); /* starts as sad/muted */
   will-change: transform, opacity, filter;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .word-swap--final {
@@ -1524,10 +1526,12 @@ hr.amber {
 
 /* Hero tagline " for a change." — fades in after "ready." */
 .hero-tagline {
+  display: none;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
 .hero-tagline--visible {
+  display: inline;
   opacity: 1;
 }
 
