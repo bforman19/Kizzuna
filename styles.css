@@ -1004,10 +1004,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .form__input:focus,
-.form__select:focus,
 .form__textarea:focus {
   border-color: var(--amber);
   background: rgba(201, 100, 66, 0.04);
+}
+
+.form__select:focus {
+  border-color: var(--amber);
+  background: var(--bg-light);
 }
 
 .form__select {
@@ -1019,8 +1023,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .form__select option {
-  background: var(--bg-deep);
-  color: var(--text-primary);
+  background: var(--bg-light);
+  color: var(--text-dark);
 }
 
 .form__textarea {
@@ -3214,4 +3218,92 @@ body::after {
 
 .promo-player__sound.is-unmuted .sound-icon--on  { display: block; }
 .promo-player__sound.is-unmuted .sound-icon--off { display: none; }
+
+/* ── Kizzuna Word Origin Section ─────────────────────────── */
+.kizzuna-kanji {
+  font-size: clamp(5rem, 16vw, 9rem);
+  line-height: 1;
+  color: var(--amber);
+  opacity: 0.15;
+  font-family: serif;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+  transition: opacity 0.6s ease;
+}
+.kizzuna-origin:hover .kizzuna-kanji,
+.kizzuna-kanji.in-view {
+  opacity: 0.35;
+}
+
+.kizzuna-def {
+  max-width: 600px;
+  margin-inline: auto;
+  border: 1px solid rgba(255,183,3,0.15);
+  border-radius: 8px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: rgba(255,183,3,0.03);
+}
+
+.kizzuna-def__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.kizzuna-def__word {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.kizzuna-def__phonetic {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--amber);
+  opacity: 0.8;
+}
+
+.kizzuna-def__pos {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.kizzuna-def__meaning {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.kizzuna-def__note {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.kizzuna-def__rule {
+  width: 3rem;
+  height: 1px;
+  background: var(--amber);
+  opacity: 0.4;
+  margin: 0 auto 1.5rem;
+}
+
+.kizzuna-def__tagline {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+}
 
