@@ -236,23 +236,70 @@
     }
   });
 
-  /* ---- FORM SUBMISSION (placeholder) ---- */
+  /* ---- BOOKING FORM — HubSpot API submission ---- */
   const bookingForm = document.querySelector('.booking-form');
   if (bookingForm) {
-    bookingForm.addEventListener('submit', e => {
+    const reasonSelect = bookingForm.querySelector('#bf-reason');
+    const otherGroup   = bookingForm.querySelector('#bf-other-group');
+
+    // Show/hide "Other" text area based on dropdown selection
+    if (reasonSelect) {
+      reasonSelect.addEventListener('change', () => {
+        otherGroup.style.display = reasonSelect.value === 'Other' ? '' : 'none';
+      });
+    }
+
+    bookingForm.addEventListener('submit', async e => {
       e.preventDefault();
-      const btn = bookingForm.querySelector('[type="submit"]');
-      if (!btn) return;
-      const original = btn.textContent;
-      btn.textContent = 'Sent — We\'ll be in touch soon.';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled    = false;
-        btn.style.opacity = '';
+      const btn    = bookingForm.querySelector('#bf-submit');
+      const errBox = bookingForm.querySelector('#bf-error');
+      const name   = bookingForm.querySelector('#bf-name').value.trim();
+      const email  = bookingForm.querySelector('#bf-email').value.trim();
+      const reason = bookingForm.querySelector('#bf-reason').value;
+      const other  = bookingForm.querySelector('#bf-other').value.trim();
+      const message = reason === 'Other' && other ? `Other: ${other}` : reason;
+
+      btn.textContent = 'Sending\u2026';
+      btn.disabled    = true;
+      if (errBox) errBox.style.display = 'none';
+
+      try {
+        const res = await fetch(
+          'https://api.hsforms.com/submissions/v3/integration/submit/245765726/a2519837-acb9-4b78-a247-5284d05b4d17',
+          {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: [
+                { objectTypeId: '0-1', name: 'firstname', value: name    },
+                { objectTypeId: '0-1', name: 'email',     value: email   },
+                { objectTypeId: '0-1', name: 'message',   value: message },
+              ],
+              context: {
+                pageUri:  window.location.href,
+                pageName: document.title,
+              },
+            }),
+          }
+        );
+
+        if (!res.ok) throw new Error(res.status);
+
+        btn.textContent   = '\u2713 Sent \u2014 we\'ll be in touch soon.';
+        btn.style.opacity = '0.75';
         bookingForm.reset();
-      }, 5000);
+        if (otherGroup) otherGroup.style.display = 'none';
+        setTimeout(() => {
+          btn.textContent   = 'Send Message';
+          btn.disabled      = false;
+          btn.style.opacity = '';
+        }, 6000);
+
+      } catch {
+        btn.textContent = 'Send Message';
+        btn.disabled    = false;
+        if (errBox) errBox.style.display = '';
+      }
     });
   }
 
