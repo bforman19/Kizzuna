@@ -249,7 +249,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.1;
 }
 
-.nav__logo span {
+.nav__logo .nav__logo-sub {
   color: var(--amber);
 }
 
