@@ -959,6 +959,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .format-card__icon {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: var(--amber);
 }
 
 .format-card__title {
