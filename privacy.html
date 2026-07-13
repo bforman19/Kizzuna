@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kizzuna — Privacy Policy</title>
+  <meta name="description" content="Kizzuna's privacy policy. Your Screen Time data stays on your iPhone — no ad tracking, no selling your data, no profiles. Your time is yours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- ==========================================================
+       Page-scoped styles for the privacy policy prose.
+       Everything else inherits the site design system (styles.css).
+       ========================================================== -->
+  <style>
+    /* readable single-column legal prose */
+    .legal { max-width: 760px; }
+    .legal h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+      color: var(--text-dark);
+      margin: 2.75rem 0 1rem;
+    }
+    .legal h2:first-of-type { margin-top: 0; }
+    .legal p {
+      color: var(--text-dark-sec);
+      line-height: 1.75;
+      max-width: 66ch;
+      margin-bottom: 1.15rem;
+    }
+    .legal a { color: var(--amber); }
+    .legal .legal__updated {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-dark-sec);
+      margin-bottom: 2.5rem;
+    }
+    .legal .legal__foot {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--text-dark-sec);
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav__close label text-muted" style="position:absolute;top:2rem;right:2rem;font-size:1.5rem;">✕</button>
+  <a href="index.html"    class="mobile-nav__link">Home</a>
+  <a href="film.html"     class="mobile-nav__link">The Film</a>
+  <a href="speaking.html" class="mobile-nav__link">Speaking</a>
+  <a href="about.html"    class="mobile-nav__link">About</a>
+  <a href="story.html"    class="mobile-nav__link">The Story</a>
+  <a href="support.html"  class="mobile-nav__link">The App</a>
+  <a href="book.html"     class="mobile-nav__link" style="color:var(--amber)">Contact</a>
+</nav>
+
+<!-- NAVIGATION -->
+<header class="nav" role="banner">
+  <a href="index.html" class="nav__logo" style="display:flex;align-items:center;gap:0.6rem;"><img src="images/kizzunalogo.png" alt="" style="height:36px;width:36px;border-radius:50%;object-fit:cover;flex-shrink:0;"><span>Kizzuna<span class="nav__logo-sub">the connection company</span></span></a>
+  <nav aria-label="Main navigation">
+    <ul class="nav__links">
+      <li><a href="index.html"    class="nav__link">Home</a></li>
+      <li><a href="film.html"     class="nav__link">The Film</a></li>
+      <li><a href="speaking.html" class="nav__link">Speaking</a></li>
+      <li><a href="about.html"    class="nav__link">About</a></li>
+      <li><a href="story.html"    class="nav__link">The Story</a></li>
+      <li><a href="support.html"  class="nav__link">The App</a></li>
+      <li><a href="book.html"     class="nav__link">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="nav__mobile-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+
+<!-- ============================================================
+     PAGE HERO  (dark void, matches interior-page pattern)
+     ============================================================ -->
+<section style="padding-top:calc(80px + clamp(5rem,10vw,10rem));padding-bottom:clamp(4rem,7vw,7rem);background:var(--bg-void);color:var(--text-primary);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:60%;height:100%;background:radial-gradient(ellipse 80% 60% at 80% 25%, rgba(92,127,82,0.16), transparent 70%);pointer-events:none;"></div>
+
+  <div class="container">
+    <div style="max-width:880px;">
+      <div class="hero__eyebrow" style="opacity:0;animation:fadeUp 0.9s var(--ease-out-expo) 0.2s forwards;">
+        <div class="hero__eyebrow-line"></div>
+        <span class="label text-amber">Legal · Privacy</span>
+      </div>
+      <h1 class="display-xl" style="margin-bottom:1.25rem;opacity:0;animation:fadeUp 1s var(--ease-out-expo) 0.4s forwards;">
+        Your time is<br>
+        <em>yours.</em>
+      </h1>
+      <p class="subhead text-muted" style="max-width:660px;opacity:0;animation:fadeUp 1s var(--ease-out-expo) 0.6s forwards;">
+        Kizzuna is built to keep your information on your device. Your screen time data never
+        leaves your iPhone, we don't run ad tracking, we don't sell your data, and we don't
+        build profiles about you.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRIVACY POLICY
+     ============================================================ -->
+<section class="section" id="privacy">
+  <div class="container">
+    <div class="legal">
+      <p class="legal__updated">Last updated: 13 July 2026</p>
+
+      <h2>The short version</h2>
+      <p>
+        Kizzuna is built to keep your information on your device. Your screen time data never
+        leaves your iPhone, we don't run ad tracking, we don't sell your data, and we don't
+        build profiles about you. Your time is yours.
+      </p>
+
+      <h2>What Kizzuna does with your data</h2>
+      <p>
+        <strong>Screen Time information stays on your device.</strong> Kizzuna uses Apple's Screen
+        Time technology (the FamilyControls, ManagedSettings, and DeviceActivity frameworks) to
+        understand your app usage so it can show you your own insights, streaks, and progress. This
+        information is processed entirely on your iPhone. It is not transmitted to us, and it is not
+        shared with any third party.
+      </p>
+      <p>
+        <strong>Sign in with Apple.</strong> Authentication is provided by Apple through Sign in
+        with Apple, which lets you have a personal space in the app and choose your kanji mark.
+        Apple may provide Kizzuna with a private identifier for your account. In the current version
+        of Kizzuna, this identifier is stored only on your device and is not sent to any server
+        operated by us.
+      </p>
+      <p>
+        <strong>What Kizzuna stores on your device.</strong> Kizzuna keeps your preferences,
+        progress, streaks, and app settings locally on your device so the app can function
+        correctly. This information stays on your iPhone.
+      </p>
+      <p>
+        <strong>No analytics, ads, or tracking.</strong> Kizzuna does not include third-party
+        advertising, does not use tracking technologies, and does not embed third-party analytics
+        tools that report your behavior back to us or anyone else.
+      </p>
+
+      <h2>Permissions</h2>
+      <p>
+        Kizzuna asks for Screen Time authorization so it can monitor your app usage and give you
+        your personal insights, streaks, and progress. You can grant or revoke this permission at
+        any time in your device's Settings. Without it, the features that rely on your usage data
+        will not function, but the rest of the app remains available.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>
+        In the current version of Kizzuna, we do not collect or transmit your personal information
+        to our servers. Your usage information is processed on your device and is not sent to us.
+      </p>
+
+      <h2>Information we share or sell</h2>
+      <p>
+        We do not share or sell your information, because we do not receive it.
+      </p>
+
+      <h2>Third-party services</h2>
+      <p>
+        Kizzuna does not use third-party analytics, advertising SDKs, or data brokers. The app
+        relies only on the Apple system frameworks required for its functionality.
+      </p>
+
+      <h2>For users in the European Union</h2>
+      <p>
+        Because Kizzuna processes your Screen Time information only on your device and does not
+        receive that information, we do not process that data on our own servers.
+      </p>
+
+      <h2>Children's privacy</h2>
+      <p>
+        Kizzuna is rated 4+ and is suitable for all ages. Because we do not collect personal data,
+        we do not knowingly collect information from children or anyone else.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy as Kizzuna evolves — for example, when features that involve
+        connecting with friends are introduced. When that happens, we will revise this page and the
+        App Store privacy information to accurately describe how data is handled in that version.
+        The "last updated" date at the top will always reflect the current version.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        If you have any questions about this policy or your privacy in Kizzuna, you can reach us at:
+      </p>
+      <p>
+        Email: <a href="mailto:kizzunaconnect@gmail.com?subject=Kizzuna%20Privacy">kizzunaconnect@gmail.com</a><br>
+        Website: <a href="index.html">kizzuna.co</a>
+      </p>
+
+      <p class="legal__foot">&copy; 2026 Disconnected Education LLC. All rights reserved.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name">Kizzuna</div>
+        <p class="footer__tagline">A youth-led documentary film and speaking initiative about reclaiming the spaces where real life — and real connection — happens.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">&#9675;</a>
+          <a href="#" class="footer__social-link" aria-label="TikTok">&#9651;</a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">&#9654;</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer__col-title">Navigate</p>
+        <ul class="footer__links">
+          <li><a href="film.html"     class="footer__link">The Film</a></li>
+          <li><a href="speaking.html" class="footer__link">Speaking</a></li>
+          <li><a href="about.html"    class="footer__link">About Us</a></li>
+          <li><a href="book.html"     class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Kizzuna App</p>
+        <ul class="footer__links">
+          <li><a href="support.html" class="footer__link">The App</a></li>
+          <li><a href="support.html#faq" class="footer__link">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__col-title">Contact</p>
+        <ul class="footer__links">
+          <li><a href="mailto:kizzunaconnect@gmail.com?subject=Kizzuna%20App%20Support" class="footer__link">kizzunaconnect@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Kizzuna. A youth-led initiative. &middot; <a href="privacy.html" class="footer__link">Privacy Policy</a></p>
+      <p class="text-muted">Made by the generation that grew up online.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
