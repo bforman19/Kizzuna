@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kizzuna — Showcase</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Uses its own copy of styles.css so this page can be deployed on its
+       own without also shipping the (separately in-progress) speaking.html
+       changes that share the site-wide styles.css/script.js. -->
+  <link rel="stylesheet" href="showcase-styles.css" />
+  <style>
+    /* Bio section uses its own two-column layout (photo + text) rather
+       than reusing .grid-3, since an inline column override would beat
+       styles.css's mobile media queries and break on small screens. */
+    .bio-layout { display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; }
+    @media (max-width: 768px) {
+      .bio-layout { grid-template-columns: 1fr; }
+    }
+    /* .team-card__bio is styled tan (--text-secondary) for its usual home on
+       dark backgrounds (about.html's bg-void team section) — on this page's
+       light bg-warm section that reads as nearly invisible, so override it
+       to the same dark ink other light sections use. */
+    .section--light .team-card__bio { color: var(--text-dark-sec); }
+  </style>
+</head>
+<body class="page-transition">
+
+<!-- SITE LOADER -->
+<div class="site-loader" aria-hidden="true">
+  <div class="site-loader__logo"><span>Kizzuna</span></div>
+</div>
+
+<!-- ============================================================
+     SECTION: THE CURRICULUM — TOPIC WHEEL
+     Copied verbatim from speaking.html so the popup/step JS in
+     script.js (which selects by class, not by page) works as-is.
+     `section--light` added alongside `bg-warm` — without it, body
+     text defaults to the near-white/tan colors meant for the
+     site's dark sections, which is illegible on this light bg
+     (see index.html:360 for the same pairing used elsewhere).
+     ============================================================ -->
+<section class="section bg-warm section--light" id="topics" style="position:relative;overflow:hidden;padding-top:clamp(3rem,6vw,6rem);">
+
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3.5rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">What We Cover</p>
+      <h2 class="display-md">Nine conversations.<br>You choose what matters.</h2>
+    </div>
+
+    <div class="topic-explorer reveal">
+
+      <div class="topic-wheel" role="group" aria-label="Speaking topics — three core topics in the center and six you can choose from around them">
+
+        <!-- Decorative spokes from the hub out to each ring node (desktop) -->
+        <svg class="topic-wheel__spokes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <line x1="50" y1="50" x2="50"    y2="10"/>
+          <line x1="50" y1="50" x2="84.64" y2="30"/>
+          <line x1="50" y1="50" x2="84.64" y2="70"/>
+          <line x1="50" y1="50" x2="50"    y2="90"/>
+          <line x1="50" y1="50" x2="15.36" y2="70"/>
+          <line x1="50" y1="50" x2="15.36" y2="30"/>
+        </svg>
+
+        <button type="button" class="topic-node topic-node--pick" style="--x:50%;--y:10%;" aria-label="Addictive Design — learn more"
+          data-title="Addictive Design"
+          data-question="Why are these apps so addictive?"
+          data-bullets='[{"text":"The specific design choices behind Snapchat, Instagram, and TikTok","sub":["Pull-to-refresh","The infinite scroll","Variable reinforcement","Streaks"]},"How many of these features were modeled after casino games"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Addictive%20Design.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Addictive Design</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:84.64%;--y:30%;" aria-label="The Attention Economy — learn more"
+          data-title="The Attention Economy"
+          data-question="How is Meta worth almost a trillion dollars when Facebook, Instagram, and WhatsApp are free?"
+          data-bullets='["The business model behind social media","What these platforms are actually incentivized to do","How we, the users, become the product"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Attention%20Economy.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">The Attention Economy</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:84.64%;--y:70%;" aria-label="AI and Mental Health — learn more"
+          data-title="AI &amp; Mental Health"
+          data-question="What risk does AI pose to mental health?"
+          data-bullets='["The risks of a technology that&#39;s agreeable by design","Why loneliness isn&#39;t something we should replace","How AI can be a revolutionary tool instead of a crutch"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/AI%20and%20mental%20health.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">AI &amp; Mental Health</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:50%;--y:90%;" aria-label="Mindfulness — learn more"
+          data-title="Mindfulness"
+          data-question="How do we protect against a world full of stimulation?"
+          data-bullets='["A science-backed anxiety tool used by elite athletes, Fortune 500 CEOs, and everyday people alike","Meditation as the antidote to constant digital stimulation","Learning to sit in silence instead of relying on a screen to stay entertained"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Meditaiton.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Mindfulness</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:15.36%;--y:70%;" aria-label="Human Connection — learn more"
+          data-title="Human Connection"
+          data-question="Why do we care so much about connecting in the first place?"
+          data-bullets='["A quick run-through of human evolution and connection","Why building tribes has always been our species&#39; superpower","How social media companies manipulate that same primal need"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Connection.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Human Connection</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:15.36%;--y:30%;" aria-label="Harms of Social Media — learn more"
+          data-title="Harms of Social Media"
+          data-question="How does social media impact us and our society?"
+          data-bullets='["Comparison culture","External validation","Shortened attention spans","The loneliness crisis","Political polarization","Loss of civic engagement"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo topic-node__logo--zoom" src="images/Photos%20for%20Curricula%20Options/Our%20Generations%20Mental%20Health.png" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Harms of Social Media</span>
+        </button>
+
+        <!-- Center hub: the three core topics we always teach -->
+        <div class="topic-hub">
+          <span class="topic-hub__label">Always taught</span>
+          <div class="topic-hub__core" role="group" aria-label="The three core topics taught at every event">
+            <button type="button" class="topic-node topic-node--core" aria-label="Our Story — learn more"
+              data-title="Our Story"
+              data-question="What was it like growing up online?"
+              data-bullets='[{"text":"A personal story of getting a phone at 11","sub":["Gaining access to Instagram, Vine, and Snapchat","Ben&#39;s early reels","The impact of Snapmaps, and the loneliness that followed"]},"The journey back offline"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Personal%20Story.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">Our Story</span>
+            </button>
+            <button type="button" class="topic-node topic-node--core" aria-label="Attention Activism — learn more"
+              data-title="Attention Activism"
+              data-question="How do we regain agency in a digital world?"
+              data-bullets='["A screen audit to see exactly how we spend our time online","Intention-setting around what actually brings us meaning","Goal-setting and a detox challenge to reshape our relationship with our phones"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Attention%20Activism.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">Attention Activism</span>
+            </button>
+            <button type="button" class="topic-node topic-node--core" aria-label="A Life Online — learn more"
+              data-title="A Life Online"
+              data-question="How much of my life will I spend online?"
+              data-bullets='["Calculating our own screen time to see where it&#39;s really going","An interactive graph showing how much of our free time, across a lifetime, ends up spent looking down"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Time%20Online.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">A Life Online</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interaction hint -->
+      <p class="topic-hint label">Tap any topic to learn more</p>
+
+    </div>
+  </div>
+
+  <!-- ---- Topic popup: opens centered, step through all topics with ‹ › ---- -->
+  <div class="topic-modal" role="dialog" aria-modal="true" aria-labelledby="topic-modal-title" aria-hidden="true" hidden>
+    <div class="topic-modal__backdrop" data-topic-close></div>
+    <div class="topic-modal__card" role="document">
+      <button type="button" class="topic-modal__close" data-topic-close aria-label="Close">&times;</button>
+      <p class="topic-modal__eyebrow label"></p>
+      <h3 class="topic-modal__title" id="topic-modal-title"></h3>
+      <p class="topic-modal__question-label">Guiding Question</p>
+      <p class="topic-modal__question"></p>
+      <ul class="topic-modal__bullets"></ul>
+      <div class="topic-modal__nav">
+        <button type="button" class="topic-modal__arrow" data-topic-dir="-1" aria-label="Previous topic">&lsaquo;</button>
+        <span class="topic-modal__counter" aria-live="polite"></span>
+        <button type="button" class="topic-modal__arrow" data-topic-dir="1" aria-label="Next topic">&rsaquo;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: VIDEO PREVIEW — SEE A CLIP
+     Copied verbatim from speaking.html.
+     ============================================================ -->
+<section class="section bg-void" id="see-it" style="background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,183,3,0.07) 0%, transparent 60%), var(--bg-void); overflow:hidden;">
+  <div class="container--narrow text-center reveal" style="margin-bottom:3rem;">
+    <p class="label text-amber" style="margin-bottom:1rem;">See It in Action</p>
+    <h2 class="display-md">From the<br>TEDx stage.</h2>
+    <p class="subhead text-muted" style="margin-top:1.25rem;max-width:480px;margin-inline:auto;">
+      Ben's talk on growing up online.
+    </p>
+  </div>
+
+  <!-- TED Talk swapped in for the campus-clip preview; getCurrentTime() from
+       the YouTube API is measured from the true video start (not the
+       `start` param), so stop-time = 5 (start) + 90 (preview length) = 95,
+       otherwise the preview would end instantly. -->
+  <div class="video-preview reveal reveal--scale" data-stop-time="95" data-video-id="tjqxNiIxrss">
+    <div class="video-preview__frame">
+      <span class="video-preview__badge label">Preview</span>
+      <div class="video-preview__progress" aria-hidden="true">
+        <div class="video-preview__progress-fill"></div>
+      </div>
+      <iframe
+        id="speaking-player"
+        class="video-preview__player"
+        src="https://www.youtube-nocookie.com/embed/tjqxNiIxrss?start=5&enablejsapi=1&rel=0&modestbranding=1&color=white&iv_load_policy=3&playsinline=1"
+        title="Ben Forman — TEDx Talk"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      <div class="video-preview__overlay" aria-hidden="true">
+        <div class="video-preview__overlay-inner">
+          <p class="label text-amber" style="margin-bottom:1.25rem;letter-spacing:0.12em;">That's just a glimpse.</p>
+          <h3 class="video-preview__cta-headline">Ready to bring<br>this to your campus?</h3>
+          <div class="video-preview__cta-actions">
+            <a href="book.html" class="btn btn--primary">Get in Touch</a>
+            <a href="#" class="btn btn--outline js-watch-full" target="_blank" rel="noopener">Watch Full Video</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="video-preview__caption">From Ben's TEDx talk on growing up online.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: BEN'S BIO
+     Reuses the team-card pattern from about.html (same classes,
+     so it picks up existing styling for free). `section--light`
+     paired with `bg-warm` for the same contrast reason as the
+     topics section above.
+     ============================================================ -->
+<section class="section bg-warm section--light">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3.5rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">Your Speaker</p>
+      <h2 class="display-md">Meet Ben.</h2>
+    </div>
+
+    <div class="bio-layout stagger" style="max-width:720px;margin-inline:auto;align-items:center;">
+      <div class="team-card reveal">
+        <div class="team-card__img">
+          <div class="img-frame__placeholder" style="height:100%;min-height:320px;aspect-ratio:3/4;position:relative;overflow:hidden;">
+            <img src="images/Ben_headshot.png" alt="Ben Forman" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+        <p class="team-card__role">Founder</p>
+        <h3 class="team-card__name">Ben Forman</h3>
+      </div>
+
+      <div class="reveal" style="text-align:left;">
+        <p class="team-card__bio" style="margin-bottom:1.25rem;">
+          Mechanical Engineer, Documentarian, and Digital Wellness Changemaker who has 5+ years in the space.
+        </p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.85rem;">
+          <li style="position:relative;padding-left:1.15rem;color:var(--text-dark-sec);font-size:0.95rem;line-height:1.55;">
+            <span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:var(--amber);"></span>
+            Carnegie Young Leader and LookUP.Live Fellow for documentary &ldquo;Disconnected&rdquo;
+          </li>
+          <li style="position:relative;padding-left:1.15rem;color:var(--text-dark-sec);font-size:0.95rem;line-height:1.55;">
+            <span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:var(--amber);"></span>
+            Digital Wellness Speaker featured at Children's and Screens Scientific Congress, TEDxCU, and high schools nationwide
+          </li>
+          <li style="position:relative;padding-left:1.15rem;color:var(--text-dark-sec);font-size:0.95rem;line-height:1.55;">
+            <span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:var(--amber);"></span>
+            Public Speaker at NoSo November and Kizzuna Connection Collective
+          </li>
+          <li style="position:relative;padding-left:1.15rem;color:var(--text-dark-sec);font-size:0.95rem;line-height:1.55;">
+            <span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:var(--amber);"></span>
+            Expertise in persuasive design techniques and the impact of social media on young people
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: TESTIMONIALS
+     Copied verbatim from speaking.html.
+     ============================================================ -->
+<section class="section bg-void">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:4rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">Campus Responses</p>
+      <h2 class="display-md">What they said after.</h2>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "There is truly no substitute for hearing from someone in Gen Z about these issues."
+        </p>
+        <p class="testimonial__author">Sarah Kresberg</p>
+        <p class="testimonial__org">Allen-Stevenson, NYC</p>
+      </div>
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "The best presentation we've ever had."
+        </p>
+        <p class="testimonial__author">Divisional Head</p>
+        <p class="testimonial__org">CSN School</p>
+      </div>
+
+      <div class="testimonial reveal">
+        <p class="testimonial__text">
+          "Truly resonated with my students."
+        </p>
+        <p class="testimonial__author">Madeline Arguello</p>
+        <p class="testimonial__org">Teacher, Fairview High School</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="showcase-script.js"></script>
+</body>
+</html>
