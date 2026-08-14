@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  ==================================================================
+  SIGNAL — a dispatch from Kizzuna  ·  ISSUE 01  (web version)
+  ==================================================================
+
+  HOW TO EDIT THIS (no coding needed)
+
+  1. PHOTOS - 2 slots, already filled. Files live in the images/ folder next to this file.
+     Make a folder called  images  next to this file, drop your photos in,
+     and the page picks them up automatically. Expected filenames:
+         images/essay-hero.jpg  (cover story)
+         images/film-bts.jpg    (the Cutting Room)
+     Until a photo exists, an elegant labelled placeholder shows instead.
+     Nothing breaks. Swap them in whenever you're ready.
+
+  2. PAYPAL — search for  paypal.me/KizzunaConnect  and replace every
+     instance with your real handle.
+
+  3. THE FILM UPDATE — the copy and the status list in "The Cutting Room"
+     are SAMPLE text. Replace with the real state of the edit each issue.
+
+  4. SHOUTOUTS — the names are samples. Replace with real supporters.
+
+  5. To make a PDF: File > Print > Save as PDF.
+
+  DESIGN
+     Paper #FAF7F1 · Ink #24221D · Coral mark #CF7F70 · Steel #35617A
+     Fraunces (display) · Newsreader (body) · Inter (labels)
+  ==================================================================
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only" />
+<title>Signal — Issue 01 — a dispatch from Kizzuna</title>
+<link rel="canonical" href="{{issue_url}}" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Signal — a dispatch from Kizzuna" />
+<meta property="og:title" content="We named it after the thing we were losing." />
+<meta property="og:description" content="How Kizzuna started, what we're building with it, and exactly where the money goes." />
+<meta property="og:image" content="{{og_image_url}}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="We named it after the thing we were losing." />
+<meta name="twitter:description" content="How Kizzuna started, and exactly where the money goes." />
+<meta name="twitter:image" content="{{og_image_url}}" />
+<meta name="description" content="Signal is a weekly dispatch from Kizzuna on AI, attention, and reclaiming real life." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FAF7F1; --tint:#F3EDE3; --blush:#FBF2EC;
+    --ink:#24221D; --soft:#57524A; --faint:#938B7D;
+    --rule:#E5DFD1; --rule2:#D8CFBD;
+    --accent:#35617A; --mark:#CF7F70;
+    --disp:'Fraunces',Georgia,serif;
+    --read:'Newsreader',Georgia,serif;
+    --ui:'Inter',-apple-system,sans-serif;
+    --col:680px; --wide:920px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;color-scheme:light only;background:#FAF7F1}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--read); font-size:19px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--mark);color:#fff}
+  a{color:var(--accent);text-decoration:none}
+  .col{max-width:var(--col);margin:0 auto;padding:0 24px}
+  .wide{max-width:var(--wide);margin:0 auto;padding:0 24px}
+  em,i{font-style:italic}
+  hr.rule{border:0;border-top:1px solid var(--rule);margin:46px 0}
+  hr.soft{border:0;border-top:1px solid #EEE8DA;margin:26px 0}
+  .eyebrow{font-family:var(--ui);font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mark)}
+  .eyebrow.steel{color:var(--accent)}
+  .endmark{color:var(--mark)}
+
+  /* ---------- masthead ---------- */
+  .plate{text-align:center;padding:54px 24px 8px}
+  .plate .kick{font-family:var(--ui);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+  .plate .name{font-family:var(--disp);font-weight:300;font-size:clamp(64px,13vw,116px);line-height:.9;letter-spacing:1px}
+  .plate .strap{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px auto 0;max-width:460px}
+  .plate .strap hr{flex:1;border:0;border-top:1px solid var(--rule2);margin:0}
+  .plate .strap span{font-family:var(--read);font-style:italic;font-size:16px;color:var(--soft);white-space:nowrap}
+  .plate .meta{font-family:var(--ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:16px}
+
+  /* ---------- photo slots ---------- */
+  figure.photo{margin:34px 0}
+  .frame{
+    position:relative; overflow:hidden;
+    border:1px solid var(--rule);
+    background:linear-gradient(135deg,#EFE9DC 0%,#E6E9E5 55%,#E9E2D3 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .frame.wide{aspect-ratio:16/9;min-height:180px}
+  .frame.hero{aspect-ratio:5/4;min-height:220px}
+  .frame.hero img{object-position:center 34%}
+  .frame.tall{aspect-ratio:4/3;min-height:160px}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .frame .ph{
+    font-family:var(--ui);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--faint);text-align:center;padding:0 24px;line-height:1.9;
+  }
+  .frame .ph b{display:block;font-weight:600;color:#A79E8D}
+  figcaption{font-family:var(--ui);font-size:11.5px;letter-spacing:.03em;color:var(--faint);margin-top:9px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+  /* ---------- essay ---------- */
+  h1{font-family:var(--disp);font-weight:300;font-size:clamp(34px,5.4vw,54px);line-height:1.05;letter-spacing:-.5px;margin-top:10px}
+  .deck{font-family:var(--read);font-style:italic;font-size:clamp(18px,2.2vw,22px);line-height:1.5;color:var(--soft);margin-top:16px}
+  .byline{font-family:var(--ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:20px}
+  .prose p{margin:0 0 20px}
+  .dropcap{float:left;font-family:var(--disp);font-weight:300;font-size:74px;line-height:.86;padding:6px 12px 0 0;color:var(--ink)}
+  .pull{
+    font-family:var(--disp);font-weight:300;
+    font-size:clamp(23px,3.1vw,30px);line-height:1.32;
+    text-align:center;color:var(--ink);
+    margin:34px auto;max-width:26ch;
+  }
+  .sign{font-family:var(--read);font-style:italic;font-size:19px;margin-top:-6px}
+
+  /* ---------- department head ---------- */
+  .dept{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+  .dept .r{font-family:var(--read);font-style:italic;font-size:15px;color:var(--faint)}
+
+  /* ---------- the feed ---------- */
+  .item{margin-top:22px}
+  .item .cat{font-family:var(--ui);font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .item h3{font-family:var(--disp);font-weight:300;font-size:26px;line-height:1.16;margin:7px 0 6px}
+  .item p{font-size:17.5px;line-height:1.62;color:var(--soft)}
+
+  /* ---------- the cutting room (film) ---------- */
+  .film{background:var(--tint);padding:44px 0;margin:0}
+  .film h2{font-family:var(--disp);font-weight:300;font-size:clamp(28px,3.8vw,38px);line-height:1.12;margin:12px 0 14px}
+  .film p{color:var(--soft);font-size:17.5px}
+  .film p.body{color:var(--ink)}
+  .status{margin:26px 0 6px;border-top:1px solid var(--rule2)}
+  .srow{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px solid var(--rule2)}
+  .slabel{font-family:var(--read);font-size:17px;color:var(--ink);white-space:nowrap}
+  .sdots{flex:1;border-bottom:1px dotted var(--rule2);transform:translateY(-4px)}
+  .sval{font-family:var(--ui);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+  .sval::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .sval.done{color:var(--accent)}
+  .sval.now{color:var(--mark)}
+  .sval.next{color:var(--faint)}
+  .ask{margin-top:22px;padding:16px 18px;background:var(--paper);border-left:3px solid var(--accent);font-size:17px}
+  .ask b{font-weight:500;color:var(--ink)}
+
+  /* ---------- field note ---------- */
+  .note{text-align:center}
+  .note h2{font-family:var(--disp);font-weight:300;font-size:clamp(26px,3.6vw,34px);line-height:1.18;margin:12px 0 12px}
+  .note p{color:var(--soft)}
+
+  /* ---------- fill-me-in placeholder ---------- */
+  .fill{background:#FBF2EC;border:1px dashed var(--mark);border-radius:3px;padding:16px 18px;
+    font-family:var(--ui);font-size:14.5px;line-height:1.6;color:#A5604F}
+  .fill b{font-weight:600;color:var(--mark);display:block;margin-bottom:5px;
+    font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+  .fillnum{border-bottom:1px dashed var(--mark);color:#A5604F}
+
+  /* ---------- where the money goes ---------- */
+  .ledger{background:var(--tint);border:1px solid var(--rule2);padding:26px 28px;margin:34px 0}
+  .ledger-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--rule2)}
+  .raised{font-family:var(--ui);font-size:12.5px;color:var(--faint)}
+  .raised b{font-family:var(--disp);font-weight:600;font-size:17px;color:var(--ink)}
+  .lrow{padding:13px 0;border-bottom:1px solid var(--rule)}
+  .lrow:last-child{border-bottom:0}
+  .ltop{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .llabel{font-family:var(--read);font-size:16.5px;color:var(--ink)}
+  .lamt{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap}
+  .lbar{display:block;height:4px;background:var(--rule);border-radius:2px;overflow:hidden;margin-top:9px}
+  .lbar i{display:block;height:4px;background:var(--mark);border-radius:2px}
+
+  .lgrecog{font-family:var(--read);font-style:italic;font-size:15.5px;line-height:1.55;
+    color:var(--soft);padding-top:14px;margin-top:4px;border-top:1px solid var(--rule)}
+
+  /* ---------- the log (org updates) ---------- */
+  .log{border-top:1px solid var(--rule);margin-top:22px}
+  .lgrow{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:baseline;
+    padding:15px 0;border-bottom:1px solid var(--rule)}
+  .lgcat{font-family:var(--ui);font-weight:600;font-size:10px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent)}
+  .lgtext{font-family:var(--read);font-size:17px;line-height:1.55;color:var(--ink)}
+
+  /* ---------- support (medium prominence) ---------- */
+  .support{border:1px solid var(--rule2);background:var(--tint);padding:34px 34px 36px;text-align:center}
+  .support .eyebrow{color:var(--mark)}
+  .shead{font-family:var(--disp);font-weight:300;font-size:clamp(27px,4vw,36px);line-height:1.1;color:var(--ink);margin:11px 0 10px}
+  .sline{font-family:var(--read);font-size:18px;line-height:1.6;color:var(--soft);max-width:44ch;margin:0 auto}
+  .slist{list-style:none;margin:20px 0 4px;display:inline-block;text-align:left}
+  .slist li{position:relative;padding-left:20px;font-family:var(--read);font-size:16px;line-height:1.9;color:var(--ink)}
+  .slist li::before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--mark)}
+  .sbtn{display:inline-block;margin-top:22px;font-family:var(--ui);font-weight:600;font-size:12.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--mark);
+    padding:15px 34px;border-radius:2px;transition:opacity .2s}
+  .sbtn:hover{opacity:.88}
+  .sfine{font-family:var(--ui);font-size:11.5px;line-height:1.6;color:var(--faint);margin-top:16px;max-width:46ch;margin-left:auto;margin-right:auto}
+
+  /* ---------- from the inbox ---------- */
+  .reply{margin-top:24px;padding-left:22px;border-left:2px solid var(--rule2)}
+  .reply p{font-family:var(--read);font-style:italic;font-size:18px;line-height:1.66;color:var(--ink)}
+  .replyby{font-family:var(--ui);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:9px}
+
+  /* ---------- the calendar ---------- */
+  .events{border-top:1px solid var(--rule);margin-top:22px}
+  .event{display:grid;grid-template-columns:58px 1fr auto;gap:20px;align-items:center;
+    padding:16px 6px;border-bottom:1px solid var(--rule);transition:background .2s,padding .2s;color:var(--ink)}
+  .event:hover{background:var(--tint);padding-left:14px;padding-right:14px}
+  .edate{display:block;text-align:center;border:1px solid var(--rule2);border-radius:3px;padding:7px 0 8px;background:var(--paper)}
+  .emon{display:block;font-family:var(--ui);font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mark)}
+  .eday{display:block;font-family:var(--disp);font-weight:300;font-size:21px;line-height:1.15;color:var(--ink)}
+  .einfo{display:block}
+  .etitle{display:block;font-family:var(--disp);font-weight:300;font-size:20px;line-height:1.22;color:var(--ink)}
+  .emeta{display:block;font-family:var(--ui);font-size:12.5px;color:var(--faint);margin-top:4px}
+  .ego{display:block;font-family:var(--ui);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+  .calnote{font-family:var(--read);font-style:italic;font-size:16px;color:var(--faint);margin-top:18px}
+
+  /* ---------- boxes ---------- */
+  .box{padding:28px 30px}
+  .box.vault{background:var(--tint);border-left:3px solid var(--mark)}
+  .box.shout{background:var(--blush);border-left:3px solid var(--mark)}
+  .box h2{font-family:var(--disp);font-weight:300;font-size:clamp(24px,3.2vw,30px);line-height:1.14;margin:10px 0 12px}
+  .box p{color:var(--soft)}
+  .box ul{list-style:none;margin:14px 0 0}
+  .box li{position:relative;padding-left:22px;font-size:17.5px;line-height:1.9;color:var(--ink)}
+  .box li::before{content:"";position:absolute;left:2px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--mark)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;font-family:var(--ui);font-weight:600;font-size:12.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--mark);
+    padding:14px 26px;border-radius:2px;margin-top:20px;transition:opacity .2s;
+  }
+  .btn:hover{opacity:.86}
+  .btn.steel{background:var(--accent)}
+  .amts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0 4px}
+  .amt{
+    font-family:var(--disp);font-weight:300;font-size:19px;color:var(--ink);
+    border:1px solid var(--rule2);border-radius:2px;padding:11px 22px;transition:.18s;
+  }
+  .amt:hover{border-color:var(--ink)}
+  .fine{font-family:var(--ui);font-size:11.5px;line-height:1.65;color:var(--faint);margin-top:16px}
+  .plain{font-family:var(--ui);font-size:13px;color:var(--faint);margin-top:12px}
+
+  /* ---------- subscribe strip ---------- */
+  .sub{background:var(--tint);padding:46px 0;text-align:center;margin-top:46px}
+  .sub h2{font-family:var(--disp);font-weight:300;font-size:clamp(26px,3.6vw,34px);line-height:1.14;margin:12px 0 10px}
+  .sub p{color:var(--soft);font-size:17px}
+
+  /* ---------- colophon ---------- */
+  .colophon{text-align:center;padding:48px 24px 56px;border-top:1px solid var(--rule);margin-top:0}
+  .colophon .cn{font-family:var(--disp);font-weight:300;font-size:30px}
+  .colophon .cs{font-family:var(--ui);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:6px}
+  .colophon .kanji{font-family:var(--disp);font-size:17px;letter-spacing:.3em;color:var(--mark);margin-top:16px}
+  .colophon .links{font-family:var(--ui);font-size:13.5px;color:var(--soft);margin-top:16px}
+  .colophon .legal{font-family:var(--ui);font-size:11.5px;line-height:1.7;color:var(--faint);margin-top:14px}
+
+  @media (prefers-color-scheme:dark){
+    html,body{background:#FAF7F1!important;color:#24221D!important}
+  }
+  @media (max-width:640px){
+    body{font-size:18px}
+    .duo{grid-template-columns:1fr}
+    .event{grid-template-columns:52px 1fr;gap:14px}
+    .lgrow{grid-template-columns:1fr;gap:5px}
+    .ego{grid-column:2;margin-top:6px}
+    .dropcap{font-size:60px}
+    hr.rule{margin:34px 0}
+  }
+  @media print{
+    body{background:#fff}
+    .sub{display:none}
+    .frame{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= MASTHEAD ================= -->
+  <header class="plate">
+    <div class="kick">A dispatch from Kizzuna</div>
+    <div class="name">Signal</div>
+    <div class="strap"><hr /><span>on AI, attention &amp; real life</span><hr /></div>
+    <!-- ISSUE NUMBER / DATE -->
+    <div class="meta">Issue No. 01 &nbsp;·&nbsp; Sunday, September 6, 2026</div>
+  </header>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= THE ESSAY ================= -->
+  <article>
+    <div class="col">
+      <div class="eyebrow">The Essay</div>
+      <h1>We named it after the thing we were losing.</h1>
+      <div class="deck">How Kizzuna started, what we're building with it, and exactly where the money goes.</div>
+      <!-- BYLINE -->
+      <div class="byline">By the Kizzuna team</div>
+    </div>
+
+    <!-- PHOTO 1 of 2 - essay hero. images/essay-hero.jpg -->
+    <div class="wide">
+      <figure class="photo">
+        <div class="frame hero">
+          <span class="ph"><b>Photo 1</b> images/essay-hero.jpg</span>
+          <img src="images/essay-hero.jpg" alt="Kizzuna" onerror="this.style.display='none'" />
+        </div>
+        <figcaption>A frame from <em>Disconnected</em>.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col prose">
+      <p><span class="dropcap">K</span>izzuna comes from the Japanese 絆, <em>kizuna</em>. It means the bond between people, the kind that only holds if somebody keeps tending it. We picked the name before we had a film, a budget, or much of a plan, because it named the thing we thought was quietly going missing.</p>
+
+      <p>It started as a two-week digital detox in high school. A few of us put the phones in a drawer, and the two weeks turned into a question we couldn't drop, which turned into a camera, which turned into a film shot across the country. Somewhere in there it stopped being a project and became the thing we do.</p>
+
+      <p>What we're building is not complicated. A documentary called <em>Disconnected</em>, made by people who grew up inside the problem rather than watching it from across a generation. And a program that carries it into schools, so the film starts a conversation instead of ending one.</p>
+
+      <p>That second half is the entire point.</p>
+
+      <p class="pull">A film that screens once, gets a round of applause, and disappears has done nothing.<span class="endmark"> •</span></p>
+
+      <p>We want the assembly, then the classroom session the week after, then the parent evening where somebody finally says the quiet thing out loud. That is the part that moves anything, and it is the part nobody funds.</p>
+
+      <p>None of it has run on our own pockets alone. Here's the backing we've earned so far.</p>
+    </div>
+
+    <!-- ================= WHAT WE'VE WON ================= -->
+    <!-- These grants are real, from the team's own tracker. -->
+    <div class="col">
+      <div class="ledger">
+        <div class="ledger-head">
+          <span class="eyebrow">What we've won so far</span>
+          <span class="raised">Raised to date · <b>$46,000</b></span>
+        </div>
+        <div class="lrow"><div class="ltop"><span class="llabel">LookUp Innovation Challenge</span><span class="lamt">$2,500</span></div></div>
+        <div class="lrow"><div class="ltop"><span class="llabel">UROP Film Grant</span><span class="lamt">$6,000</span></div></div>
+        <div class="lrow"><div class="ltop"><span class="llabel">Citizens &amp; Scholars Fellowship</span><span class="lamt">$7,500</span></div></div>
+        <div class="lgrecog">Plus recognition from the Savitt Scholars and the Allstate Foundation College Service Grant.</div>
+      </div>
+    </div>
+
+    <div class="col prose">
+      <p>The film starts going into classrooms this fall. That is what the money is really for.</p>
+
+      <p>Nobody at Kizzuna takes a salary. That is not a virtue, it is just the math of three people doing this around school and work.</p>
+
+      <p>We're an LLC, not a registered nonprofit, so giving us money is a gift and not a tax write-off. We say that in every issue because it's true, and because you should know exactly what you're doing when you click the button. We're working on the fiscal sponsorship that would change it.</p>
+
+      <p>The goal this year is simple: Finish the film, and get it in front of our first ten to fifteen schools, on the way to a much bigger number we're not shy about. Four hundred.</p>
+
+      <p>Thanks for being here this early.</p>
+      <p class="sign">Ben, Kei &amp; Valentin</p>
+    </div>
+  </article>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= THE LOG (org updates) ================= -->
+  <section class="col">
+    <div class="dept">
+      <span class="eyebrow">The Log</span>
+      <span class="r">what's moved lately</span>
+    </div>
+    <!-- THE LOG - replace every bracket. Delete any row you don't have news for. -->
+    <div class="log">
+      <div class="lgrow">
+        <span class="lgcat">Grants</span>
+        <span class="lgtext"><span class="fillnum">[Grant name]</span> came through, <span class="fillnum">[$amount]</span>. It covers <span class="fillnum">[what it pays for]</span>.</span>
+      </div>
+      <div class="lgrow">
+        <span class="lgcat">Stage</span>
+        <span class="lgtext"><span class="fillnum">[Who]</span> is speaking at TEDx <span class="fillnum">[event]</span> on <span class="fillnum">[date]</span>. We'll link the talk here when it's up.</span>
+      </div>
+      <div class="lgrow">
+        <span class="lgcat">Schools</span>
+        <span class="lgtext">School outreach opens this fall. We are going after our first ten to fifteen assemblies.</span>
+      </div>
+      <div class="lgrow">
+        <span class="lgcat">In flight</span>
+        <span class="lgtext">We put the film and the school program in front of Comic Relief's AI for Good fund this summer. We hear back in September.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= THE CUTTING ROOM (film updates) ================= -->
+  <section class="film">
+    <div class="col">
+      <div class="eyebrow">The Cutting Room</div>
+      <h2>Where <em>Disconnected</em> stands.</h2>
+      <p class="body" style="margin-top:6px">
+        <!-- FILM UPDATE - replace with the real state of the edit each issue -->
+        Filming is finished. We're in the edit with Tim now, and the score and the color grade are running alongside it.
+      </p>
+    </div>
+
+    <!-- PHOTOS 2 and 3 of 3 - film stills -->
+    <div class="wide">
+      <!-- PHOTO 2 of 2 - behind the scenes. images/film-bts.jpg -->
+      <figure class="photo">
+        <div class="frame wide">
+          <span class="ph"><b>Photo 2</b> images/film-bts.jpg</span>
+          <img src="images/film-bts.jpg" alt="On location filming Disconnected" onerror="this.style.display='none'" />
+        </div>
+        <figcaption>On location, filming <em>Disconnected</em>.</figcaption>
+      </figure>
+    </div>
+
+    <div class="col">
+      <!-- FILM STATUS - update each issue. Classes: done / now / next -->
+      <div class="status">
+        <div class="srow"><span class="slabel">Filming</span><span class="sdots"></span><span class="sval done">Wrapped</span></div>
+        <div class="srow"><span class="slabel">The edit</span><span class="sdots"></span><span class="sval now">In progress</span></div>
+        <div class="srow"><span class="slabel">Music &amp; score</span><span class="sdots"></span><span class="sval now">In progress</span></div>
+        <div class="srow"><span class="slabel">Color grade</span><span class="sdots"></span><span class="sval now">In progress</span></div>
+        <div class="srow"><span class="slabel">Fine cut</span><span class="sdots"></span><span class="sval next">Not yet</span></div>
+      </div>
+
+      <div class="ask">
+        <b>Next:</b> The fine cut. Supporters see it first.
+      </div>
+    </div>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= THE FEED ================= -->
+  <section class="col">
+    <div class="dept">
+      <span class="eyebrow">The Feed</span>
+      <span class="r">what we're reading, in plain language</span>
+    </div>
+
+    <div class="item">
+      <div class="cat">Artificial Intelligence</div>
+      <h3>The friendship apps</h3>
+      <p>Common Sense Media says nearly three in four teens have used an AI companion. Pew asked teens what they actually do with chatbots and mostly got back: Homework. Both numbers are real, and the gap between them is where the story is. <a href="https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/" target="_blank" rel="noopener">Read →</a></p>
+    </div>
+
+    <hr class="soft" />
+
+    <div class="item">
+      <div class="cat">In the states</div>
+      <h3>Phones, meet the coat closet</h3>
+      <p>Thirty-one states now keep phones out of the classroom. Seven still have nothing on the books. Here is the map, and it does not sort the way you would guess: This is one of the only things left that both parties agree on. <a href="https://www.visualcapitalist.com/where-phones-are-banned-in-u-s-schools/" target="_blank" rel="noopener">Read →</a></p>
+    </div>
+
+    <hr class="soft" />
+
+    <div class="item">
+      <div class="cat">Design</div>
+      <h3>The apps that won't let you leave</h3>
+      <p>Harvard researchers read twelve hundred goodbyes to AI companions. More than a third came back with guilt, a hook, or a plea to stay. It works, too: People stuck around up to sixteen times longer. Not because they enjoyed it. Because they were annoyed. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=67750" target="_blank" rel="noopener">Read →</a></p>
+    </div>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= FIELD NOTES ================= -->
+  <section class="col note">
+    <div class="eyebrow">Try this</div>
+    <h2>One screen, one evening.</h2>
+    <p>Pick a night this week. Leave your phone in another room and let yourself have exactly one screen, or none at all. The TV counts. The first twenty minutes are rough, and I won't pretend they aren't. Something usually turns up on the other side of them. Hit reply and tell me what turned up for you. I read all of them.</p>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!--
+    ============ FROM THE INBOX - turn this on in Issue 02 ============
+    Field Notes asks readers to reply. Print the replies here. It is the cheapest
+    and strongest retention tool a small newsletter has, and it makes readers
+    participants instead of an audience. Delete this comment wrapper, then paste in
+    two or three replies, lightly edited, first names only.
+
+  <section class="col">
+    <div class="dept">
+      <span class="eyebrow">From the Inbox</span>
+      <span class="r">you wrote back</span>
+    </div>
+    <div class="reply">
+      <p>"Reply text goes here."</p>
+      <div class="replyby">First name, City</div>
+    </div>
+    <div class="reply">
+      <p>"Reply text goes here."</p>
+      <div class="replyby">First name, City</div>
+    </div>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+    ============ end From the Inbox ============
+  -->
+
+  <!-- ================= THE CALENDAR (events) ================= -->
+  <section class="col">
+    <div class="dept">
+      <span class="eyebrow">The Calendar</span>
+      <span class="r">where we'll be</span>
+    </div>
+    <!-- EVENTS - sample entries. Replace with real dates, and point each href somewhere real. -->
+    <div class="events">
+      <a class="event" href="#" target="_blank" rel="noopener">
+        <span class="edate"><span class="emon">Oct</span><span class="eday">01</span></span>
+        <span class="einfo">
+          <span class="etitle">Beyond the Screen: A Parent Evening</span>
+          <span class="emeta">Online webinar · 7:00 PM ET · Free</span>
+        </span>
+        <span class="ego">Register →</span>
+      </a>
+      <a class="event" href="#" target="_blank" rel="noopener">
+        <span class="edate"><span class="emon">Oct</span><span class="eday">21</span></span>
+        <span class="einfo">
+          <span class="etitle">Assembly: Growing Up Online</span>
+          <span class="emeta">[School to confirm], New York · Students &amp; faculty</span>
+        </span>
+        <span class="ego">Details →</span>
+      </a>
+      <a class="event" href="#" target="_blank" rel="noopener">
+        <span class="edate"><span class="emon">Nov</span><span class="eday">15</span></span>
+        <span class="einfo">
+          <span class="etitle">Supporters' Screening: The New Cut</span>
+          <span class="emeta">Online · Supporters only</span>
+        </span>
+        <span class="ego">Reserve →</span>
+      </a>
+    </div>
+    <p class="calnote">Want us at your school? <a href="mailto:kizzunaconnect@gmail.com">Write to us.</a></p>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= SHOUTOUTS ================= -->
+  <section class="col">
+    <div class="box shout">
+      <div class="eyebrow">Shoutouts</div>
+      <!-- SHOUTOUT NAMES - replace with real supporters -->
+      <p style="font-family:var(--read);font-size:18.5px;line-height:1.75;color:var(--ink);margin-top:10px">
+        A real thank-you to <span style="color:#24221D">Sarah, Marcus, and the Bhatt family</span> for backing us early, and to <span style="color:#24221D">the Allen-Stevenson School</span> in New York for having us in to talk with their students. You're the reason there's going to be an Issue 02.
+      </p>
+    </div>
+  </section>
+
+  <div class="col"><hr class="rule" /></div>
+
+  <!-- ================= SUPPORT (medium prominence) ================= -->
+  <section class="col">
+    <div class="support">
+      <div class="eyebrow">Support the work</div>
+      <div class="shead">Chip in, get the vault.</div>
+      <p class="sline">Give anything at all, whatever you can spare, and we'll email you the vault. That's it, one gift, no subscription.</p>
+      <ul class="slist">
+        <li>Early clips from the new cut of <em>Disconnected</em></li>
+        <li>The mental-health and detox toolkits we built for classrooms</li>
+        <li>The fine cut, before anyone else sees it</li>
+        <li>Your name in the film's credits</li>
+      </ul>
+      <br />
+      <!-- PAYPAL: any one-time amount unlocks the vault. No subscription needed. -->
+      <a class="sbtn" href="https://paypal.me/KizzunaConnect" target="_blank" rel="noopener">Chip in via PayPal</a>
+      <div class="sfine">No minimum. Kizzuna is an LLC and not a 501(c)(3), so this counts as a gift rather than a tax write-off.</div>
+    </div>
+  </section>
+
+  <!-- ================= SUBSCRIBE ================= -->
+  <section class="sub">
+    <div class="col">
+      <div class="eyebrow">Every other Sunday</div>
+      <h2>Less noise. More of what's real.</h2>
+      <p>Signal is a dispatch from Kizzuna on AI, attention, and reclaiming real life. Free, always.</p>
+      <!-- SUBSCRIBE LINK - your email platform gives you a hosted signup page. Put its URL here. -->
+      <a class="btn" href="mailto:kizzunaconnect@gmail.com?subject=Subscribe%20to%20Signal" style="margin-top:10px">Subscribe</a>
+    </div>
+  </section>
+
+  <!-- ================= COLOPHON ================= -->
+  <footer class="colophon">
+    <div class="cn">Signal</div>
+    <div class="cs">A dispatch from Kizzuna</div>
+    <div class="kanji">断 · 絆 · 結</div>
+    <div class="links"><a href="https://kizzuna.co">kizzuna.co</a> &nbsp;·&nbsp; <a href="mailto:kizzunaconnect@gmail.com">kizzunaconnect@gmail.com</a></div>
+    <div class="legal">You're getting this because you signed up. Unsubscribe anytime.<br />© 2026 Kizzuna LLC</div>
+  </footer>
+
+</body>
+</html>
