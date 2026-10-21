@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<title>Kizzuna — School Outreach Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#F5F0E8; --band:#DAD2C5; --inset:#FBF8F2;
+  --sumi:#1A1A18; --stone:#8C8680; --hair:#E4DBCB;
+  --moss:#5C6B4A; --clay:#A0715E; --indigo:#2D2D5E;
+  --ben-bg:#EAF0E2;
+  --mincho:'Zen Old Mincho',serif; --cormo:'Cormorant Garamond',Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{ background:#E0D7C8; color:var(--sumi); font-family:var(--cormo); line-height:1.5; padding:32px 16px;
+  font-feature-settings:"onum" 1,"liga" 1,"kern" 1; -webkit-font-smoothing:antialiased }
+.sheet{ max-width:1220px; margin:0 auto; background:var(--washi); box-shadow:0 26px 64px rgba(26,26,24,.20); overflow:hidden }
+.mast{ position:relative; background:var(--band); padding:36px 44px 26px; overflow:hidden }
+.mast .kanji{ position:absolute; top:-60px; right:24px; font-family:var(--mincho); font-weight:500; font-size:220px; line-height:1; color:rgba(26,26,24,.05); pointer-events:none; user-select:none }
+.kick{ font-family:var(--cormo); font-weight:600; font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:var(--moss); position:relative }
+.title{ font-family:var(--mincho); font-weight:600; font-size:clamp(32px,5vw,52px); line-height:1.02; margin:12px 0 0; color:var(--sumi); position:relative }
+.subtitle{ font-family:var(--cormo); font-style:italic; font-size:18px; color:var(--stone); margin:8px 0 0; position:relative; max-width:70ch }
+.statrow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; position:relative }
+.stat{ background:var(--inset); border:1px solid var(--hair); border-radius:3px; padding:8px 16px; }
+.stat .n{ font-family:var(--mincho); font-weight:600; font-size:22px; color:var(--moss); }
+.stat .l{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--stone); }
+.whoami{ position:absolute; top:36px; right:44px; font-size:13px; color:var(--stone); font-style:italic; }
+.whoami button{ font-family:var(--cormo); font-style:italic; background:none; border:none; color:var(--moss); text-decoration:underline; cursor:pointer; font-size:13px; padding:0; }
+.controls{ padding:20px 44px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; border-bottom:1px solid var(--hair); background:var(--inset); }
+.controls input, .controls select{ font-family:var(--cormo); font-size:15px; padding:8px 12px; border:1px solid var(--hair); border-radius:3px; background:#fff; color:var(--sumi); }
+.controls input{ flex:1; min-width:200px; }
+.note{ font-style:italic; color:var(--stone); font-size:13.5px; padding:14px 44px 0; }
+.body{ padding:10px 44px 40px; overflow-x:auto; }
+table{ width:100%; border-collapse:collapse; margin-top:10px; }
+th{ font-family:var(--cormo); font-weight:600; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--stone); text-align:left; padding:10px 12px; border-bottom:2px solid var(--sumi); position:sticky; top:0; background:var(--washi); }
+td{ font-size:15px; padding:12px; border-bottom:1px solid var(--hair); vertical-align:top; }
+tr.region-row td{ background:var(--band); font-family:var(--mincho); font-weight:600; font-size:14px; color:var(--sumi); padding:8px 12px; }
+tr.school-row:hover{ background:var(--ben-bg); }
+.school-name{ font-weight:600; }
+.meta{ color:var(--stone); font-size:12.5px; }
+.contact{ font-size:14px; }
+.contact .t{ color:var(--stone); font-style:italic; font-size:12.5px; }
+.contact a{ color:var(--moss); text-decoration:none; }
+.contact a:hover{ text-decoration:underline; }
+.hook{ font-style:italic; color:var(--stone); font-size:13.5px; max-width:260px; }
+.badge{ font-family:var(--cormo); font-weight:600; font-size:11px; letter-spacing:.06em; text-transform:uppercase; padding:4px 10px; border-radius:20px; white-space:nowrap; display:inline-block; cursor:pointer; border:none; }
+.b-notstarted{ background:#EFEBE2; color:var(--stone); }
+.b-engaged{ background:#F5EAE4; color:var(--clay); }
+.b-drafted{ background:#EAF0E2; color:var(--moss); }
+.b-sent{ background:#EAEBF5; color:var(--indigo); }
+.b-replied{ background:#FFF3CD; color:#8a6d1a; }
+.b-callbooked{ background:#FFF3CD; color:#8a6d1a; }
+.b-booked{ background:var(--moss); color:#fff; }
+.b-declined{ background:#F3E3E3; color:#8a3a3a; }
+.logbtn{ font-family:var(--cormo); font-style:italic; font-size:12.5px; color:var(--stone); background:none; border:1px solid var(--hair); border-radius:3px; padding:3px 9px; cursor:pointer; margin-top:6px; display:inline-block; }
+.logbtn:hover{ border-color:var(--moss); color:var(--moss); }
+.footer{ padding:18px 44px 30px; border-top:1px solid var(--hair); font-size:13px; color:var(--stone); font-style:italic; }
+.hidden{ display:none !important; }
+/* modal */
+.overlay{ position:fixed; inset:0; background:rgba(26,26,24,.5); display:flex; align-items:center; justify-content:center; z-index:100; padding:20px; }
+.modal{ background:var(--washi); border-radius:4px; max-width:560px; width:100%; max-height:86vh; overflow-y:auto; padding:28px 30px; box-shadow:0 20px 60px rgba(0,0,0,.3); }
+.modal h3{ font-family:var(--mincho); font-weight:600; margin:0 0 4px; font-size:22px; }
+.modal .sub{ color:var(--stone); font-style:italic; font-size:14px; margin-bottom:16px; }
+.modal label{ display:block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--stone); margin:14px 0 4px; }
+.modal input[type=text], .modal select, .modal textarea{ width:100%; font-family:var(--cormo); font-size:15px; padding:8px 10px; border:1px solid var(--hair); border-radius:3px; background:#fff; color:var(--sumi); }
+.modal textarea{ min-height:60px; resize:vertical; }
+.modal-actions{ display:flex; gap:10px; margin-top:18px; justify-content:flex-end; }
+.btn{ font-family:var(--cormo); font-weight:600; font-size:14px; padding:8px 18px; border-radius:20px; border:none; cursor:pointer; }
+.btn-primary{ background:var(--moss); color:#fff; }
+.btn-secondary{ background:none; color:var(--stone); border:1px solid var(--hair); }
+.activity-list{ margin-top:8px; border-top:1px solid var(--hair); padding-top:10px; }
+.activity-item{ padding:8px 0; border-bottom:1px solid var(--hair); font-size:13.5px; }
+.activity-item .who{ font-weight:600; color:var(--sumi); }
+.activity-item .when{ color:var(--stone); font-size:12px; font-style:italic; }
+.activity-item .what{ margin-top:2px; }
+.fieldgrid{ display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
+.sechead{ font-family:var(--mincho); font-weight:600; font-size:14px; margin:22px 0 0; padding-top:14px; border-top:1px solid var(--hair); color:var(--sumi); }
+.gate{ max-width:560px; margin:0 auto; background:var(--washi); padding:44px; box-shadow:0 26px 64px rgba(26,26,24,.20); text-align:center; }
+.gate h1{ font-family:var(--mincho); font-weight:600; font-size:26px; margin:12px 0 10px; }
+.gate p{ color:var(--stone); font-style:italic; margin:0 auto; max-width:44ch; }
+</style>
+</head>
+<body>
+<div class="sheet hidden" id="sheet">
+  <div class="mast">
+    <div class="kanji">縁</div>
+    <div class="whoami">Logged in as <button id="whoBtn">…</button></div>
+    <div class="kick">Kizzuna · Speaking Tour</div>
+    <div class="title">School Outreach Tracker</div>
+    <div class="subtitle">2026–27 target list · Boston, NYC, Nashville, Denver, Los Angeles, Bay Area — goal: 20+ booked speaking gigs. Live &amp; shared with the team — edits sync for everyone.</div>
+    <div class="statrow" id="statrow"></div>
+  </div>
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search school, contact, or city…">
+    <select id="regionFilter"><option value="">All regions</option></select>
+    <select id="statusFilter"><option value="">All statuses</option></select>
+  </div>
+  <div class="note" id="syncNote">Connecting…</div>
+  <div class="body">
+    <table>
+      <thead><tr><th>School</th><th>Contact 1</th><th>Contact 2</th><th>Personalization Hook</th><th>Status</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="footer">Every field is editable — click <i>Edit / log</i> on any row. Changes save instantly and sync to everyone else on the board, and each edit is recorded in that school's activity log.</div>
+</div>
+
+<div class="gate hidden" id="gate">
+  <div class="kick">Kizzuna</div>
+  <h1 id="gateTitle">This page needs its full link</h1>
+  <p id="gateMsg">The outreach board opens from a private link that includes a key after the <b>#</b>. Ask Ben for the full link and open it exactly as sent — copying only part of it won't work.</p>
+</div>
+
+<div id="modalRoot"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import {
+  getFirestore, collection, doc, onSnapshot, updateDoc, addDoc, getDocs,
+  serverTimestamp, query, orderBy
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDCz2V6pxjvjPbRIJP5i4vtc_IJEZOho70",
+  authDomain: "kizzuna-school-outreach.firebaseapp.com",
+  projectId: "kizzuna-school-outreach",
+  storageBucket: "kizzuna-school-outreach.firebasestorage.app",
+  messagingSenderId: "406385129486",
+  appId: "1:406385129486:web:168411372eb4367466a45f"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const STATUS_OPTIONS = ["Not Started","Drafted","Sent","Replied","Call Booked","Engaged","Booked","Declined"];
+
+// Editable school fields: [key, label, placeholder]
+const FIELDS = [
+  ["s",   "School",    ""],
+  ["r",   "Region",    "e.g. Boston / Greater Boston"],
+  ["c",   "City",      ""],
+  ["st",  "State",     "e.g. MA"],
+  ["g",   "Grades",    "e.g. 9-12"],
+  ["c1n", "Name",      ""],
+  ["c1t", "Title",     ""],
+  ["c1e", "Email",     ""],
+  ["c2n", "Name",      ""],
+  ["c2t", "Title",     ""],
+  ["c2e", "Email",     ""]
+];
+
+let schools = [];
+
+function badgeClass(status){
+  const map = {"Not Started":"b-notstarted","Engaged":"b-engaged","Drafted":"b-drafted","Sent":"b-sent","Replied":"b-replied","Call Booked":"b-callbooked","Booked":"b-booked","Declined":"b-declined"};
+  return map[status] || "b-notstarted";
+}
+
+function getMyName(){ return localStorage.getItem("kizzuna_tracker_name") || ""; }
+function setMyName(name){
+  localStorage.setItem("kizzuna_tracker_name", name);
+  document.getElementById("whoBtn").textContent = name || "set your name";
+}
+function ensureName(){
+  let name = getMyName();
+  if(!name){
+    name = (prompt("What's your name? (shown on the activity log so the team knows who did what)") || "").trim();
+    if(name) setMyName(name);
+  }
+  return name;
+}
+
+function escapeHtml(str){
+  return String(str == null ? "" : str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function contactHtml(name, title, email){
+  if(!name && !email) return "<span class='meta'>—</span>";
+  let out = "";
+  if(name)  out += "<div>"+escapeHtml(name)+"</div>";
+  if(title) out += "<div class='t'>"+escapeHtml(title)+"</div>";
+  if(email) out += "<div><a href='mailto:"+encodeURIComponent(email)+"'>"+escapeHtml(email)+"</a></div>";
+  return "<div class='contact'>"+out+"</div>";
+}
+
+function populateFilters(){
+  const regions  = [...new Set(schools.map(x=>x.r).filter(Boolean))].sort();
+  const statuses = [...new Set(schools.map(x=>x.status).filter(Boolean))];
+  const rf = document.getElementById("regionFilter");
+  const sf = document.getElementById("statusFilter");
+  const prevR = rf.value, prevS = sf.value;
+  rf.innerHTML = "<option value=''>All regions</option>";
+  sf.innerHTML = "<option value=''>All statuses</option>";
+  regions.forEach(r=>{ const o=document.createElement("option"); o.value=r; o.textContent=r; rf.appendChild(o); });
+  statuses.forEach(s=>{ const o=document.createElement("option"); o.value=s; o.textContent=s; sf.appendChild(o); });
+  rf.value = prevR; sf.value = prevS;
+}
+
+function renderStats(){
+  const counts = {};
+  schools.forEach(x=>{ counts[x.status] = (counts[x.status]||0)+1; });
+  const row = document.getElementById("statrow");
+  row.innerHTML = "";
+  const addStat = (n,l) => {
+    const d = document.createElement("div");
+    d.className = "stat";
+    d.innerHTML = "<div class='n'>"+escapeHtml(n)+"</div><div class='l'>"+escapeHtml(l)+"</div>";
+    row.appendChild(d);
+  };
+  addStat(schools.length, "Total Schools");
+  STATUS_OPTIONS.filter(s => counts[s]).forEach(s => addStat(counts[s], s));
+}
+
+function render(){
+  const q = document.getElementById("search").value.toLowerCase();
+  const regionSel = document.getElementById("regionFilter").value;
+  const statusSel = document.getElementById("statusFilter").value;
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
+  let lastRegion = null;
+  const sorted = [...schools].sort((a,b)=> (a.r||"").localeCompare(b.r||"") || (a.s||"").localeCompare(b.s||""));
+  sorted.forEach(x=>{
+    if(regionSel && x.r !== regionSel) return;
+    if(statusSel && x.status !== statusSel) return;
+    const hay = [x.s,x.c,x.c1n,x.c2n,x.c1e,x.c2e,x.hook].map(v=>v||"").join(" ").toLowerCase();
+    if(q && !hay.includes(q)) return;
+    if(x.r !== lastRegion){
+      const tr = document.createElement("tr");
+      tr.className = "region-row";
+      tr.innerHTML = "<td colspan='5'>"+escapeHtml(x.r)+"</td>";
+      tbody.appendChild(tr);
+      lastRegion = x.r;
+    }
+    const tr = document.createElement("tr");
+    tr.className = "school-row";
+    tr.innerHTML = "<td><div class='school-name'>"+escapeHtml(x.s)+"</div><div class='meta'>"+escapeHtml(x.c)+", "+escapeHtml(x.st)+" · "+escapeHtml(x.g||"")+"</div></td>"
+      + "<td>"+contactHtml(x.c1n, x.c1t, x.c1e)+"</td>"
+      + "<td>"+contactHtml(x.c2n, x.c2t, x.c2e)+"</td>"
+      + "<td class='hook'>"+escapeHtml(x.hook||"")+(x.note ? "<br><b>"+escapeHtml(x.note)+"</b>" : "")+"</td>"
+      + "<td>"
+      + "<span class='badge "+badgeClass(x.status)+"' data-id='"+escapeHtml(x.id)+"'>"+escapeHtml(x.status)+"</span>"
+      + "<br><button class='logbtn' data-id='"+escapeHtml(x.id)+"'>Edit / log</button>"
+      + "</td>";
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll(".logbtn, .badge").forEach(el=>{
+    el.addEventListener("click", () => openLogModal(el.getAttribute("data-id")));
+  });
+}
+
+function closeModal(){ document.getElementById("modalRoot").innerHTML = ""; }
+
+function openLogModal(schoolId){
+  const school = schools.find(s => s.id === schoolId);
+  if(!school) return;
+  const root = document.getElementById("modalRoot");
+
+  const inputRow = (k, label, ph) =>
+    "<div><label>"+escapeHtml(label)+"</label><input type='text' id='f_"+k+"' placeholder='"+escapeHtml(ph)+"'></div>";
+
+  root.innerHTML =
+    "<div class='overlay' id='overlay'><div class='modal'>"
+    + "<h3 id='mTitle'></h3>"
+    + "<div class='sub'>Edit any field below. Everything saves to the shared board.</div>"
+    + "<label>Update status</label><select id='modalStatus'>"
+      + STATUS_OPTIONS.map(s => "<option>"+escapeHtml(s)+"</option>").join("")
+    + "</select>"
+    + "<label>Note (what happened?)</label>"
+    + "<textarea id='modalNote' placeholder='e.g. Sent initial email, replied asking about pricing…'></textarea>"
+    + "<div class='sechead'>School</div><div class='fieldgrid'>"
+      + FIELDS.slice(0,5).map(f=>inputRow(...f)).join("")
+    + "</div>"
+    + "<div class='sechead'>Contact 1</div><div class='fieldgrid'>"
+      + FIELDS.slice(5,8).map(f=>inputRow(...f)).join("")
+    + "</div>"
+    + "<div class='sechead'>Contact 2</div><div class='fieldgrid'>"
+      + FIELDS.slice(8,11).map(f=>inputRow(...f)).join("")
+    + "</div>"
+    + "<label>Personalization hook</label><textarea id='f_hook'></textarea>"
+    + "<label>Pinned note (shown in bold on the board)</label><textarea id='f_note'></textarea>"
+    + "<div class='modal-actions'>"
+      + "<button class='btn btn-secondary' id='modalCancel'>Cancel</button>"
+      + "<button class='btn btn-primary' id='modalSave'>Save</button>"
+    + "</div>"
+    + "<div class='activity-list' id='activityList'><div class='meta'>Loading activity…</div></div>"
+    + "</div></div>";
+
+  // Populate via .value so quotes/apostrophes in the data can't break the markup.
+  document.getElementById("mTitle").textContent = school.s || "(unnamed school)";
+  FIELDS.forEach(([k]) => { document.getElementById("f_"+k).value = school[k] || ""; });
+  document.getElementById("f_hook").value = school.hook || "";
+  document.getElementById("f_note").value = school.note || "";
+  document.getElementById("modalStatus").value = STATUS_OPTIONS.includes(school.status) ? school.status : "Not Started";
+
+  document.getElementById("overlay").addEventListener("click", e => { if(e.target.id === "overlay") closeModal(); });
+  document.getElementById("modalCancel").addEventListener("click", closeModal);
+
+  document.getElementById("modalSave").addEventListener("click", async () => {
+    const btn = document.getElementById("modalSave");
+    const name = ensureName();
+    if(!name){ alert("Please enter your name so the log knows who made this change."); return; }
+
+    // Re-read the doc from the live cache: someone else may have edited it while
+    // this modal was open. Only fields actually touched here get written, so two
+    // people editing different fields don't clobber each other.
+    const current = schools.find(s => s.id === schoolId) || school;
+    const changes = {};
+    const described = [];
+
+    const all = FIELDS.map(f=>f[0]).concat(["hook","note"]);
+    all.forEach(k => {
+      const v = document.getElementById("f_"+k).value.trim();
+      if(v !== (current[k] || "")){
+        changes[k] = v;
+        const label = (FIELDS.find(f=>f[0]===k) || [,k])[1];
+        described.push(label + ": “" + (current[k] || "—") + "” → “" + (v || "—") + "”");
+      }
+    });
+
+    const newStatus = document.getElementById("modalStatus").value;
+    const statusChanged = newStatus !== current.status;
+    if(statusChanged) changes.status = newStatus;
+
+    const noteText = document.getElementById("modalNote").value.trim();
+
+    if(!Object.keys(changes).length && !noteText){ closeModal(); return; }
+
+    btn.disabled = true; btn.textContent = "Saving…";
+    try{
+      if(Object.keys(changes).length) await updateDoc(schoolDoc(schoolId), changes);
+      const action = statusChanged ? ("Status → " + newStatus)
+                   : described.length ? "Edited details"
+                   : "Note";
+      await addDoc(activityCol(schoolId), {
+        who: name,
+        action,
+        note: [noteText, described.join(" · ")].filter(Boolean).join(" — "),
+        at: serverTimestamp()
+      });
+      closeModal();
+    }catch(err){
+      btn.disabled = false; btn.textContent = "Save";
+      alert("Couldn't save: " + err.message);
+    }
+  });
+
+  const activityQ = query(activityCol(schoolId), orderBy("at", "desc"));
+  const unsub = onSnapshot(activityQ, snap => {
+    const list = document.getElementById("activityList");
+    if(!list){ unsub(); return; }
+    if(snap.empty){ list.innerHTML = "<div class='meta'>No activity logged yet.</div>"; return; }
+    list.innerHTML = "";
+    snap.forEach(d => {
+      const a = d.data();
+      const when = a.at && a.at.toDate ? a.at.toDate().toLocaleString() : "just now";
+      const item = document.createElement("div");
+      item.className = "activity-item";
+      item.innerHTML = "<span class='who'>"+escapeHtml(a.who||"someone")+"</span> — <span class='when'>"+escapeHtml(when)+"</span>"
+        + "<div class='what'>"+escapeHtml(a.action||"")+(a.note ? ": "+escapeHtml(a.note) : "")+"</div>";
+      list.appendChild(item);
+    });
+  }, () => {});
+}
+
+// ---- link key -------------------------------------------------------
+// The board lives at workspaces/<sha256(key + SALT)>. The key comes only from
+// the URL fragment, which browsers never send to the server and never put in a
+// Referer header — so the address of the data exists only in the link itself,
+// never in this (public) repository and never in Vercel's logs.
+const SALT = "::kizzuna-outreach";
+
+async function sha256Hex(str){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,"0")).join("");
+}
+
+let WS = null;
+let unsubSchools = null;
+
+function schoolsCol(){ return collection(db, "workspaces", WS, "schools"); }
+function schoolDoc(id){ return doc(db, "workspaces", WS, "schools", id); }
+function activityCol(id){ return collection(db, "workspaces", WS, "schools", id, "activity"); }
+
+function showGate(title, msg){
+  document.getElementById("sheet").classList.add("hidden");
+  const g = document.getElementById("gate");
+  g.classList.remove("hidden");
+  document.getElementById("gateTitle").textContent = title;
+  document.getElementById("gateMsg").textContent = msg;
+}
+
+function startLiveSync(){
+  if(unsubSchools) unsubSchools();
+  unsubSchools = onSnapshot(schoolsCol(), snap => {
+    schools = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    document.getElementById("syncNote").textContent =
+      "Live — " + schools.length + " schools synced. Last update: " + new Date().toLocaleTimeString();
+    populateFilters();
+    renderStats();
+    render();
+  }, err => {
+    document.getElementById("syncNote").textContent = "Connection error: " + err.message;
+  });
+}
+
+async function open(){
+  const key = (location.hash || "").replace(/^#/, "").trim();
+  if(!/^[0-9a-f]{16,64}$/i.test(key)){
+    showGate("This page needs its full link",
+      "The outreach board opens from a private link that includes a key after the # symbol. Ask Ben for the full link and open it exactly as sent — copying only part of it won't work.");
+    return;
+  }
+  WS = await sha256Hex(key.toLowerCase() + SALT);
+  const snap = await getDocs(schoolsCol());
+  if(snap.empty){
+    showGate("No board found for this link",
+      "That link is well-formed but there's no board at it. Check that you copied the whole link, including everything after the # symbol.");
+    return;
+  }
+  document.getElementById("sheet").classList.remove("hidden");
+  document.getElementById("whoBtn").textContent = getMyName() || "set your name";
+  startLiveSync();
+}
+
+document.getElementById("whoBtn").addEventListener("click", () => {
+  const name = prompt("What's your name?", getMyName() || "");
+  if(name !== null) setMyName(name.trim());
+});
+["search","regionFilter","statusFilter"].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener(id === "search" ? "input" : "change", render);
+});
+window.addEventListener("hashchange", () => location.reload());
+
+open().catch(err => showGate("Couldn't open the board", err.message));
+</script>
+</body>
+</html>
