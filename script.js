@@ -249,6 +249,23 @@
       });
     }
 
+    // Prefill from the speaking-page outline builder, if the visitor came from there.
+    try {
+      const raw = sessionStorage.getItem('kizzuna_outline');
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (reasonSelect && data.reason) reasonSelect.value = data.reason;
+        const otherField = bookingForm.querySelector('#bf-other');
+        if (otherField && data.message) {
+          otherField.value = data.message;
+          if (otherGroup) otherGroup.style.display = ''; // reveal it even though reason isn't "Other"
+          const lbl = bookingForm.querySelector('label[for="bf-other"]');
+          if (lbl) lbl.textContent = 'What we’d tailor for you';
+        }
+        sessionStorage.removeItem('kizzuna_outline'); // one-time prefill
+      }
+    } catch (e) { /* malformed or unavailable storage — leave the form blank */ }
+
     bookingForm.addEventListener('submit', async e => {
       e.preventDefault();
       const btn    = bookingForm.querySelector('#bf-submit');
@@ -257,7 +274,8 @@
       const email  = bookingForm.querySelector('#bf-email').value.trim();
       const reason = bookingForm.querySelector('#bf-reason').value;
       const other  = bookingForm.querySelector('#bf-other').value.trim();
-      const message = reason === 'Other' && other ? `Other: ${other}` : reason;
+      // Append any detail text (from "Other" or an outline prefill) to the reason.
+      const message = other ? `${reason}\n\n${other}` : reason;
 
       btn.textContent = 'Sending\u2026';
       btn.disabled    = true;
@@ -699,4 +717,335 @@
     document.head.appendChild(ytScript);
   }
 
+})();
+
+
+/* ============================================================
+   TOPIC WHEEL — click a topic to open a centered popup, then
+   step through every topic with the ‹ › arrows.
+   Pure presentation: no state is saved, matching the static site.
+   ============================================================ */
+(function () {
+  const modal = document.querySelector('.topic-modal');
+  const allNodes = [...document.querySelectorAll('.topic-node')];
+  if (!modal || !allNodes.length) return;
+
+  // Reading order: the three core topics first, then the six options.
+  const core = allNodes.filter(n => n.classList.contains('topic-node--core'));
+  const pick = allNodes.filter(n => !n.classList.contains('topic-node--core'));
+  const order = [...core, ...pick];
+
+  const eyebrowEl = modal.querySelector('.topic-modal__eyebrow');
+  const titleEl = modal.querySelector('.topic-modal__title');
+  const questionEl = modal.querySelector('.topic-modal__question');
+  const bulletsEl = modal.querySelector('.topic-modal__bullets');
+  const counterEl = modal.querySelector('.topic-modal__counter');
+  const closeBtn = modal.querySelector('.topic-modal__close');
+
+  let index = 0;
+  let lastFocused = null; // so we can restore focus to the node that opened the popup
+
+  // Bullets can be a plain string, or {text, sub:[...]} for one level of
+  // nested detail (e.g. a headline feature with its specific sub-points).
+  function renderBullets(list) {
+    bulletsEl.innerHTML = '';
+    list.forEach(item => {
+      const li = document.createElement('li');
+      const sub = typeof item === 'string' ? null : item.sub;
+      li.textContent = typeof item === 'string' ? item : item.text;
+      if (sub && sub.length) {
+        const subUl = document.createElement('ul');
+        sub.forEach(s => {
+          const subLi = document.createElement('li');
+          subLi.textContent = s;
+          subUl.appendChild(subLi);
+        });
+        li.appendChild(subUl);
+      }
+      bulletsEl.appendChild(li);
+    });
+  }
+
+  function render() {
+    const node = order[index];
+    eyebrowEl.textContent = node.classList.contains('topic-node--core')
+      ? 'Always taught' : 'Choose for your campus';
+    titleEl.textContent = node.dataset.title;
+    questionEl.textContent = node.dataset.question;
+    renderBullets(JSON.parse(node.dataset.bullets || '[]'));
+    counterEl.textContent = (index + 1) + ' of ' + order.length;
+    allNodes.forEach(n => n.classList.remove('is-active'));
+    node.classList.add('is-active');
+  }
+
+  function openAt(i) {
+    index = (i + order.length) % order.length;
+    lastFocused = document.activeElement;
+    render();
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    // next frame so the CSS transition runs
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    document.body.style.overflow = 'hidden'; // stop the page scrolling behind the popup
+    closeBtn.focus();
+  }
+
+  function step(dir) {
+    index = (index + dir + order.length) % order.length;
+    render();
+  }
+
+  function close() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    allNodes.forEach(n => n.classList.remove('is-active'));
+    // wait for the fade-out before hiding, so it animates out
+    setTimeout(() => { modal.hidden = true; }, 300);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  // Open when a topic node is clicked
+  order.forEach((node, i) => node.addEventListener('click', () => openAt(i)));
+
+  // Prev / next arrows
+  modal.querySelectorAll('[data-topic-dir]').forEach(btn => {
+    btn.addEventListener('click', () => step(parseInt(btn.dataset.topicDir, 10)));
+  });
+
+  // Close via ✕ or backdrop
+  modal.querySelectorAll('[data-topic-close]').forEach(el => {
+    el.addEventListener('click', close);
+  });
+
+  // Keyboard: Esc closes, arrows step, Tab is trapped inside the card
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowRight') { step(1); return; }
+    if (e.key === 'ArrowLeft') { step(-1); return; }
+    if (e.key === 'Tab') {
+      const focusable = modal.querySelectorAll('button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+})();
+
+
+/* ============================================================
+   BUILD YOUR ENGAGEMENT — outline builder
+   Admins pick up to 3 pressing issues; we assemble a tailored
+   outline and (on CTA) carry their picks into the contact form.
+   All copy lives here so it's edited in one place.
+   ============================================================ */
+(function () {
+  const pillsWrap = document.querySelector('[data-builder-pills]');
+  const outlineEl = document.querySelector('[data-builder-outline]');
+  const goBtn     = document.querySelector('[data-builder-go]');
+  const countEl   = document.querySelector('[data-builder-count]');
+  const schoolIn  = document.getElementById('builder-school');
+  if (!pillsWrap || !outlineEl || !goBtn) return;
+
+  const MAX = 3;
+
+  // Single source of truth for every issue. `heavy` marks emotionally
+  // weighty topics — 2+ of them tips the recommended format to Film + Talk.
+  const ISSUES = [
+    { id: 'focus', label: 'Phones in class, can’t focus', heavy: false,
+      explore: 'Why focus feels impossible now — the apps are built to fracture attention — and how to take it back, instead of treating it as a character flaw.',
+      take: 'See focus as trainable, with concrete ways to protect it.',
+      tie: 'Attention Activism · Addictive Design' },
+    { id: 'anxiety', label: 'Anxiety & depression on the rise', heavy: true,
+      explore: 'The mental-health weight our generation carries, named plainly and without dramatizing it — and where so much of it comes from.',
+      take: 'Feel seen rather than diagnosed, with language for what they’re feeling.',
+      tie: 'Our Generation’s Mental Health' },
+    { id: 'lonely', label: 'Loneliness & thin friendships', heavy: true,
+      explore: 'Why so many kids feel alone in a hyper-connected world — and what a screen can’t replace about being in a room with people.',
+      take: 'A renewed pull toward real, in-person friendship.',
+      tie: 'Human Connection' },
+    { id: 'compare', label: 'Comparison & self-worth', heavy: true,
+      explore: 'The comparison machine: why every feed is a highlight reel, and who profits when kids feel not-enough.',
+      take: 'A little more free from the scoreboard, and warier of the feed.',
+      tie: 'The Attention Economy · Mental Health' },
+    { id: 'addiction', label: 'Screen addiction — can’t put it down', heavy: false,
+      explore: 'We open up about our own addiction to Vine, Instagram, and Snapchat, then pull back the curtain on the design tricks that made stopping so hard.',
+      take: 'Stop blaming their willpower and start seeing the system.',
+      tie: 'Addictive Design · Our Story' },
+    { id: 'bully', label: 'Cyberbullying & online cruelty', heavy: true,
+      explore: 'How people treat each other when no face is in the room — and what it costs all of us.',
+      take: 'A more human default online, and less alone if they’ve been hurt.',
+      tie: 'Human Connection · Mental Health' },
+    { id: 'ai', label: 'AI — cheating, chatbots, AI “friends”', heavy: false,
+      explore: 'Growing up alongside AI — homework, chatbots, even AI companions — the real promise and the quiet costs.',
+      take: 'More intentional about where AI helps and where it hollows things out.',
+      tie: 'AI & Mental Health' },
+    { id: 'sleep', label: 'Sleep loss & burnout', heavy: false,
+      explore: 'The real math of an always-on life — the hours, the sleep, the years — and what that time could be instead.',
+      take: 'A gut sense of the trade, and small ways to win back the night.',
+      tie: 'A Life Online · Mindfulness' },
+    { id: 'skills', label: 'Fading in-person social skills', heavy: false,
+      explore: 'Why face-to-face feels harder for this generation, and how presence is a muscle you can rebuild.',
+      take: 'More courage to be awkward, present, and real.',
+      tie: 'Human Connection · Mindfulness' },
+    { id: 'doom', label: 'Doomscrolling & always-on anxiety', heavy: false,
+      explore: 'Naming the always-on dread — the endless scroll of bad news and notifications — and practicing coming back to the present.',
+      take: 'Simple, repeatable ways to put the phone down and breathe.',
+      tie: 'The Attention Economy · Mindfulness' }
+  ];
+
+  // Fixed bookends — every outline opens and closes the same way.
+  const OPENER = {
+    title: 'We open with our story',
+    text: 'Before any research or advice, we tell the truth about our own years lost to Vine, Instagram, and Snapchat — so the room knows we’re peers who’ve lived it, not adults lecturing down.'
+  };
+  const CLOSER = {
+    title: 'We close with attention activism',
+    text: 'Not a list of rules — an invitation to take back agency over where their time and attention go, and a challenge to spend the life in front of them on what actually matters.'
+  };
+
+  let selected = []; // ids, capped at MAX
+
+  // Escape user-supplied text (the school name) before it touches innerHTML.
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  // ---- Render the pills ----
+  ISSUES.forEach(issue => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'builder-pill';
+    b.textContent = issue.label;
+    b.dataset.id = issue.id;
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => toggle(issue.id));
+    pillsWrap.appendChild(b);
+  });
+
+  function toggle(id) {
+    const i = selected.indexOf(id);
+    if (i > -1) {
+      selected.splice(i, 1);
+    } else if (selected.length < MAX) {
+      selected.push(id);
+    } else {
+      return; // already at 3 — ignore extra picks
+    }
+    syncPills();
+  }
+
+  function syncPills() {
+    pillsWrap.querySelectorAll('.builder-pill').forEach(b => {
+      const on = selected.includes(b.dataset.id);
+      b.classList.toggle('is-selected', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      // Once 3 are chosen, grey out the rest so the limit is obvious.
+      b.disabled = !on && selected.length >= MAX;
+    });
+    countEl.textContent = selected.length + ' / ' + MAX + ' selected';
+    goBtn.disabled = selected.length === 0;
+  }
+
+  // ---- Build the outline ----
+  function chosenIssues() {
+    // Keep master order for a coherent emotional arc, not click order.
+    return ISSUES.filter(i => selected.includes(i.id));
+  }
+
+  function recommendFormat(chosen) {
+    const heavy = chosen.filter(i => i.heavy).length;
+    return heavy >= 2
+      ? { name: 'Film + Talk Combo', dur: '2–2.5 hrs',
+          note: 'The film does the emotional groundwork first, then we open the room for a live conversation — the right fit when the weightiest issues are on the table.' }
+      : { name: 'The Core Talk', dur: '45–60 min',
+          note: 'Our signature event — personal story, key research, audience interaction, and a live close.' };
+  }
+
+  function buildOutline() {
+    const chosen = chosenIssues();
+    if (!chosen.length) return;
+    const school = schoolIn && schoolIn.value.trim();
+    const who = school ? esc(school) : 'your students';
+    const fmt = recommendFormat(chosen);
+
+    const steps = chosen.map(i => `
+      <li class="outline__step">
+        <p class="outline__step-title">${esc(i.label)}</p>
+        <p class="outline__step-text">${i.explore}
+          <span class="outline__step-take">Students leave: ${i.take}</span>
+        </p>
+        <span class="outline__step-tie">Draws on: ${i.tie}</span>
+      </li>`).join('');
+
+    const outcomes = chosen.map(i => `<li>${i.take}</li>`).join('');
+
+    outlineEl.innerHTML = `
+      <p class="outline__eyebrow label">Your tailored engagement</p>
+      <h2 class="outline__title">For <span>${who}</span>, here’s how we’d shape it.</h2>
+
+      <div class="outline__format">
+        <span class="outline__format-label">Recommended format</span>
+        <span class="outline__format-name">${fmt.name}</span>
+        <span class="outline__format-dur">${fmt.dur}</span>
+        <span class="outline__format-note">${fmt.note}</span>
+      </div>
+
+      <p class="outline__section-label">The session arc</p>
+      <ul class="outline__arc">
+        <li class="outline__step outline__step--fixed">
+          <p class="outline__step-title">${OPENER.title}</p>
+          <p class="outline__step-text">${OPENER.text}</p>
+        </li>
+        ${steps}
+        <li class="outline__step outline__step--fixed">
+          <p class="outline__step-title">${CLOSER.title}</p>
+          <p class="outline__step-text">${CLOSER.text}</p>
+        </li>
+      </ul>
+
+      <p class="outline__section-label">What changes</p>
+      <ul class="outline__outcomes">${outcomes}</ul>
+
+      <div class="outline__cta">
+        <button type="button" class="btn btn--primary" data-outline-start>
+          Start this conversation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn__arrow"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button type="button" class="btn btn--outline" data-outline-print>Print / Save as PDF</button>
+      </div>`;
+
+    outlineEl.hidden = false;
+    outlineEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Wire the freshly-rendered CTA buttons.
+    outlineEl.querySelector('[data-outline-start]').addEventListener('click', () => startConversation(chosen, school, fmt));
+    outlineEl.querySelector('[data-outline-print]').addEventListener('click', () => window.print());
+  }
+
+  // Stash the outline summary and hand off to the contact form.
+  function startConversation(chosen, school, fmt) {
+    const issuesText = chosen.map(i => i.label).join(', ');
+    const message =
+      (school ? 'School: ' + school + '\n\n' : '') +
+      'We’d love to explore a Kizzuna engagement for our campus.\n\n' +
+      'The issues weighing most on our students: ' + issuesText + '.\n\n' +
+      'Suggested format from your site: ' + fmt.name + ' (' + fmt.dur + ').';
+    try {
+      sessionStorage.setItem('kizzuna_outline', JSON.stringify({
+        reason: 'Book School Presentation',
+        message: message,
+        school: school || ''
+      }));
+    } catch (e) { /* private mode / storage disabled — the form still works, just unfilled */ }
+    window.location.href = 'book.html#inquiry-form';
+  }
+
+  goBtn.addEventListener('click', buildOutline);
 })();

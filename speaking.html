@@ -269,6 +269,34 @@
 </section>
 
 
+<!-- ============================================================
+     SECTION: TEDx TALK — full-length embed
+     Uses the shared .promo-player styles (16:9 frame) with a plain
+     YouTube embed. Kept separate from the "See It in Action" preview
+     because script.js only drives one .video-preview per page.
+     ============================================================ -->
+<section class="section bg-void" id="tedx" style="padding-block:clamp(4rem,7vw,7rem);">
+  <div class="container" style="max-width:1100px;">
+    <div class="text-center reveal" style="margin-bottom:2.5rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">On the TEDx Stage</p>
+      <h2 class="display-md">Ben's TEDx talk.</h2>
+      <p class="subhead text-muted" style="margin-top:1.25rem;max-width:480px;margin-inline:auto;">
+        Ben's talk on growing up online.
+      </p>
+    </div>
+    <div class="promo-player reveal reveal--scale">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/tjqxNiIxrss?rel=0&modestbranding=1&playsinline=1"
+        title="Ben Forman — TEDx Talk"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+
+
 
 
 <!-- ============================================================
@@ -317,11 +345,6 @@
   </div>
 
   <div class="container">
-    <div class="text-center reveal" style="margin-bottom:4rem;">
-      <p class="label text-amber" style="margin-bottom:1rem;">Program Options</p>
-      <h2 class="display-md">Find the right format<br>for your campus.</h2>
-    </div>
-
     <div class="grid-3 stagger">
 
       <div class="format-card format-card--dark reveal" style="background:var(--bg-dark);">
@@ -395,6 +418,204 @@
           Reach out and we'll design something together.
         </p>
       </div> -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: THE CURRICULUM — TOPIC WHEEL
+     Three core topics we always teach (center hub) + six that
+     administrators can prioritize for their campus (outer ring).
+     Hover / tap any topic to reveal its description in the panel.
+     Radial on desktop; collapses to a stacked list on mobile.
+     ============================================================ -->
+<section class="section bg-warm" id="topics" style="position:relative;overflow:hidden;">
+
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3.5rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">What We Cover</p>
+      <h2 class="display-md">Nine conversations.<br>You choose what matters.</h2>
+      <p class="subhead text-muted" style="margin-top:1.25rem;max-width:560px;margin-inline:auto;">
+        Three ideas anchor every event. Around them sit six more you can prioritize —
+        so administrators shape the talk around what their campus needs most.
+      </p>
+    </div>
+
+    <div class="topic-explorer reveal">
+
+      <div class="topic-wheel" role="group" aria-label="Speaking topics — three core topics in the center and six you can choose from around them">
+
+        <!-- Decorative spokes from the hub out to each ring node (desktop) -->
+        <svg class="topic-wheel__spokes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <line x1="50" y1="50" x2="50"    y2="10"/>
+          <line x1="50" y1="50" x2="84.64" y2="30"/>
+          <line x1="50" y1="50" x2="84.64" y2="70"/>
+          <line x1="50" y1="50" x2="50"    y2="90"/>
+          <line x1="50" y1="50" x2="15.36" y2="70"/>
+          <line x1="50" y1="50" x2="15.36" y2="30"/>
+        </svg>
+
+        <!-- Six choose-able topics, on the outer ring. Each button holds a
+             circular logo + a caption; the caption floats below the disc so it
+             never shifts the disc off its ring point. -->
+        <button type="button" class="topic-node topic-node--pick" style="--x:50%;--y:10%;" aria-label="Addictive Design — learn more"
+          data-title="Addictive Design"
+          data-question="Why are these apps so addictive?"
+          data-bullets='[{"text":"The specific design choices behind Snapchat, Instagram, and TikTok","sub":["Pull-to-refresh","The infinite scroll","Variable reinforcement","Streaks"]},"How many of these features were modeled after casino games"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Addictive%20Design.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Addictive Design</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:84.64%;--y:30%;" aria-label="The Attention Economy — learn more"
+          data-title="The Attention Economy"
+          data-question="How is Meta worth almost a trillion dollars when Facebook, Instagram, and WhatsApp are free?"
+          data-bullets='["The business model behind social media","What these platforms are actually incentivized to do","How we, the users, become the product"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Attention%20Economy.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">The Attention Economy</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:84.64%;--y:70%;" aria-label="AI and Mental Health — learn more"
+          data-title="AI &amp; Mental Health"
+          data-question="What risk does AI pose to mental health?"
+          data-bullets='["The risks of a technology that&#39;s agreeable by design","Why loneliness isn&#39;t something we should replace","How AI can be a revolutionary tool instead of a crutch"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/AI%20and%20mental%20health.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">AI &amp; Mental Health</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:50%;--y:90%;" aria-label="Mindfulness — learn more"
+          data-title="Mindfulness"
+          data-question="How do we protect against a world full of stimulation?"
+          data-bullets='["A science-backed anxiety tool used by elite athletes, Fortune 500 CEOs, and everyday people alike","Meditation as the antidote to constant digital stimulation","Learning to sit in silence instead of relying on a screen to stay entertained"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Meditaiton.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Mindfulness</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:15.36%;--y:70%;" aria-label="Human Connection — learn more"
+          data-title="Human Connection"
+          data-question="Why do we care so much about connecting in the first place?"
+          data-bullets='["A quick run-through of human evolution and connection","Why building tribes has always been our species&#39; superpower","How social media companies manipulate that same primal need"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Connection.svg" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Human Connection</span>
+        </button>
+        <button type="button" class="topic-node topic-node--pick" style="--x:15.36%;--y:30%;" aria-label="Harms of Social Media — learn more"
+          data-title="Harms of Social Media"
+          data-question="How does social media impact us and our society?"
+          data-bullets='["Comparison culture","External validation","Shortened attention spans","The loneliness crisis","Political polarization","Loss of civic engagement"]'>
+          <span class="topic-node__disc"><img class="topic-node__logo topic-node__logo--zoom" src="images/Photos%20for%20Curricula%20Options/Our%20Generations%20Mental%20Health.png" alt="" loading="lazy" /></span>
+          <span class="topic-node__title">Harms of Social Media</span>
+        </button>
+
+        <!-- Center hub: the three core topics we always teach -->
+        <div class="topic-hub">
+          <span class="topic-hub__label">Always taught</span>
+          <div class="topic-hub__core" role="group" aria-label="The three core topics taught at every event">
+            <button type="button" class="topic-node topic-node--core" aria-label="Our Story — learn more"
+              data-title="Our Story"
+              data-question="What was it like growing up online?"
+              data-bullets='[{"text":"A personal story of getting a phone at 11","sub":["Gaining access to Instagram, Vine, and Snapchat","Ben&#39;s early reels","The impact of Snapmaps, and the loneliness that followed"]},"The journey back offline"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Personal%20Story.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">Our Story</span>
+            </button>
+            <button type="button" class="topic-node topic-node--core" aria-label="Attention Activism — learn more"
+              data-title="Attention Activism"
+              data-question="How do we regain agency in a digital world?"
+              data-bullets='["A screen audit to see exactly how we spend our time online","Intention-setting around what actually brings us meaning","Goal-setting and a detox challenge to reshape our relationship with our phones"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Attention%20Activism.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">Attention Activism</span>
+            </button>
+            <button type="button" class="topic-node topic-node--core" aria-label="A Life Online — learn more"
+              data-title="A Life Online"
+              data-question="How much of my life will I spend online?"
+              data-bullets='["Calculating our own screen time to see where it&#39;s really going","An interactive graph showing how much of our free time, across a lifetime, ends up spent looking down"]'>
+              <span class="topic-node__disc"><img class="topic-node__logo" src="images/Curricula%20Cropped%20Images/Time%20Online.svg" alt="" loading="lazy" /></span>
+              <span class="topic-node__title">A Life Online</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interaction hint -->
+      <p class="topic-hint label">Tap any topic to learn more</p>
+
+    </div>
+  </div>
+
+  <!-- ---- Topic popup: opens centered, step through all topics with ‹ › ---- -->
+  <div class="topic-modal" role="dialog" aria-modal="true" aria-labelledby="topic-modal-title" aria-hidden="true" hidden>
+    <div class="topic-modal__backdrop" data-topic-close></div>
+    <div class="topic-modal__card" role="document">
+      <button type="button" class="topic-modal__close" data-topic-close aria-label="Close">&times;</button>
+      <p class="topic-modal__eyebrow label"></p>
+      <h3 class="topic-modal__title" id="topic-modal-title"></h3>
+      <p class="topic-modal__question-label">Guiding Question</p>
+      <p class="topic-modal__question"></p>
+      <ul class="topic-modal__bullets"></ul>
+      <div class="topic-modal__nav">
+        <button type="button" class="topic-modal__arrow" data-topic-dir="-1" aria-label="Previous topic">&lsaquo;</button>
+        <span class="topic-modal__counter" aria-live="polite"></span>
+        <button type="button" class="topic-modal__arrow" data-topic-dir="1" aria-label="Next topic">&rsaquo;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION: BUILD YOUR ENGAGEMENT — outline builder
+     Admins pick up to 3 pressing issues; we assemble a tailored
+     outline and carry their picks into the contact form.
+     The issue list lives in script.js (single source of truth);
+     pills and the outline are rendered there.
+     ============================================================ -->
+<section class="section bg-deep" id="build" style="position:relative;overflow:hidden;">
+
+  <!-- Onsen ripple divider -->
+  <div class="ripple-divider" aria-hidden="true">
+    <svg viewBox="0 0 200 80" fill="none">
+      <line x1="0" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="0.8"/>
+      <circle cx="100" cy="40" r="5" fill="currentColor" opacity="0.9"/>
+      <circle cx="100" cy="40" r="16" stroke="currentColor" stroke-width="1.2" opacity="0.85"/>
+      <circle cx="100" cy="40" r="28" stroke="currentColor" stroke-width="1.0" opacity="0.65"/>
+      <circle cx="100" cy="40" r="38" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+      <line x1="144" y1="40" x2="200" y2="40" stroke="currentColor" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3rem;">
+      <p class="label text-amber" style="margin-bottom:1rem;">Build Your Engagement</p>
+      <h2 class="display-md">Tell us what's pressing.<br>We'll shape the talk around it.</h2>
+      <p class="subhead text-muted" style="margin-top:1.25rem;max-width:600px;margin-inline:auto;">
+        Pick the three issues weighing heaviest on your campus. In about ten seconds
+        we'll build a tailored outline of what a Kizzuna engagement could look like for your students.
+      </p>
+    </div>
+
+    <div class="builder reveal">
+
+      <!-- Optional school name -->
+      <div class="builder__school">
+        <label class="builder__label label" for="builder-school">
+          School / campus name <span class="builder__optional">(optional)</span>
+        </label>
+        <input class="form__input" type="text" id="builder-school"
+               placeholder="e.g. Lincoln High School" autocomplete="off" />
+      </div>
+
+      <!-- Issue pills (rendered by JS) -->
+      <p class="builder__prompt label">
+        Choose up to 3 <span class="builder__count" data-builder-count>0 / 3 selected</span>
+      </p>
+      <div class="builder__pills" data-builder-pills role="group"
+           aria-label="Pressing issues — choose up to three"></div>
+
+      <div class="builder__actions">
+        <button type="button" class="btn btn--primary" data-builder-go disabled>
+          Build my outline
+        </button>
+      </div>
+
+      <!-- Generated outline (rendered by JS) -->
+      <div class="outline" data-builder-outline aria-live="polite" hidden></div>
 
     </div>
   </div>

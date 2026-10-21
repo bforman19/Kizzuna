@@ -3443,3 +3443,687 @@ body::after {
   line-height: 1.7;
 }
 
+
+/* ============================================================
+   TOPIC WHEEL — Speaking curriculum explorer
+   Radial hub-and-spoke on desktop; stacked list on mobile.
+   ============================================================ */
+.topic-explorer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* ---- Curriculum logo wheel ----
+   Three core topics sit in a center ring; the six choose-able ones ring around
+   them. Each node is a circular crop of its hand-inked enso logo — the caption
+   sits below the crop, and the popup shows the topic in full. Nodes keep the
+   .topic-node / --core / --pick classes the popup JS reads.
+
+   Each disc is a two-layer frame: `.topic-node__disc` is the fixed-size
+   circle (border, shadow, overflow:hidden) and `.topic-node__logo` is the img
+   inside it. Most logos are now pre-cropped to a circle in Canva (transparent
+   outside the ink art), so the default just fills the disc edge-to-edge. The
+   `--zoom` modifier is a fallback for any topic still using an uncropped
+   source photo — it oversizes + centers the img so the disc's circular
+   overflow crops out the paper margin instead. */
+.topic-wheel {
+  position: relative;
+  width: min(94vw, 800px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+/* Decorative spokes from the hub out to each ring node */
+.topic-wheel__spokes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.topic-wheel__spokes line {
+  stroke: var(--amber);
+  stroke-width: 0.25;
+  opacity: 0.3;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Shared node — a button holding a disc + a caption below it. The button
+   itself is transparent; the circle styling lives on .topic-node__disc. */
+.topic-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.topic-node:focus-visible { outline: none; }
+
+/* The circular frame. Borderless/shadowless at rest so every disc — ring or
+   center — melts into the warm paper page; hover/focus/tap reveals the moss
+   border + lift, which is what signals "this is clickable." */
+.topic-node__disc {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--bg-warm);
+  border: 1.5px solid transparent;
+  box-shadow: none;
+  transition: transform 0.45s var(--ease-out-expo),
+              box-shadow 0.45s var(--ease-out-expo),
+              border-color 0.35s ease;
+}
+.topic-node:hover .topic-node__disc,
+.topic-node:focus-visible .topic-node__disc,
+.topic-node.is-active .topic-node__disc {
+  transform: scale(1.06);
+  border-color: var(--amber);
+  box-shadow: 0 16px 38px rgba(74, 103, 65, 0.28);
+}
+
+/* Default: logo already pre-cropped to a circle (transparent background),
+   so it just fills the disc directly — no zoom/crop math needed. */
+.topic-node__logo {
+  width: 100%;
+  height: 100%;
+  max-width: none; /* site-wide `img { max-width: 100% }` would otherwise cap this back down */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Fallback for a topic still using an uncropped source photo — oversizes +
+   centers the img so the disc's circular overflow crops out the paper
+   margin around the ink art. Remove this class once that topic gets a
+   pre-cropped version too. */
+.topic-node__logo--zoom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 132%;
+  height: 132%;
+  transform: translate(-50%, -50%);
+}
+
+/* The caption */
+.topic-node__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+/* Outer ring nodes, positioned on the hexagon via --x / --y.
+   The button box is exactly the disc; the caption is absolutely positioned
+   below it so it never nudges the disc off its ring point. */
+.topic-node--pick {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: clamp(115px, 17vw, 145px);
+  height: clamp(115px, 17vw, 145px);
+  translate: -50% -50%; /* standalone property, not transitioned — centers instantly */
+}
+.topic-node--pick .topic-node__disc {
+  width: 100%;
+  height: 100%;
+}
+.topic-node--pick .topic-node__title {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 16ch;
+  font-size: 1rem;
+}
+
+/* Center ring holding the three core topics. No solid fill — just a thin
+   hand-drawn moss circle (echoing the enso in the logos themselves) with a
+   label above, so the three read as "grouped and different" without a heavy
+   dark card. */
+.topic-hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: clamp(298px, 48vw, 368px);
+  height: clamp(298px, 48vw, 368px);
+  border-radius: 50%;
+  background: rgba(74, 103, 65, 0.05);
+  border: 1.5px solid rgba(74, 103, 65, 0.38);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.35rem;
+}
+.topic-hub__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.topic-hub__core {
+  display: flex;
+  align-items: flex-start; /* captions can be 1–2 lines; align discs at the top */
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+/* Core nodes — smaller circles inside the moss ring, caption in-flow beneath */
+.topic-node--core {
+  width: clamp(70px, 10vw, 85px);
+}
+.topic-node--core .topic-node__disc {
+  width: clamp(70px, 10vw, 85px);
+  height: clamp(70px, 10vw, 85px);
+}
+.topic-node--core .topic-node__title {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+/* ---- Interaction hint under the wheel ---- */
+.topic-hint {
+  color: var(--amber-dim);
+  opacity: 0.75;
+}
+
+/* ---- Topic popup (centered card, steps through all topics) ---- */
+.topic-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.topic-modal[hidden] { display: none; }
+
+.topic-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 24, 20, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.topic-modal.is-open .topic-modal__backdrop { opacity: 1; }
+
+.topic-modal__card {
+  position: relative;
+  width: min(100%, 460px);
+  background: var(--bg-cream);
+  border: 1px solid rgba(74, 103, 65, 0.28);
+  border-radius: 8px;
+  padding: 2.75rem 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(26, 24, 20, 0.35);
+  transform: translateY(12px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease;
+}
+.topic-modal.is-open .topic-modal__card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.topic-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 1.1rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  transition: color 0.25s ease;
+}
+.topic-modal__close:hover,
+.topic-modal__close:focus-visible { color: var(--amber); outline: none; }
+
+.topic-modal__eyebrow {
+  color: var(--amber-dim);
+  margin-bottom: 0.9rem;
+}
+.topic-modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+.topic-modal__question-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.4rem;
+}
+/* Bubble background makes the guiding question read as the card's focal
+   point rather than blending into the bullets below it. */
+.topic-modal__question {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-dark-sec);
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.35rem;
+  background: rgba(74, 103, 65, 0.08);
+  border: 1px solid rgba(74, 103, 65, 0.22);
+  border-radius: 14px;
+}
+
+/* Left-aligned even though the rest of the card is centered — a bulleted
+   list reads better ragged-left than centered line-by-line. */
+.topic-modal__bullets {
+  list-style: none;
+  text-align: left;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-height: 38vh;
+  overflow-y: auto;
+}
+.topic-modal__bullets > li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--text-dark-sec);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.topic-modal__bullets > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.topic-modal__bullets ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.topic-modal__bullets ul li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.topic-modal__bullets ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--amber-dim);
+}
+
+.topic-modal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border-top: 1px solid rgba(30, 27, 24, 0.1);
+  padding-top: 1.25rem;
+}
+.topic-modal__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(74, 103, 65, 0.35);
+  color: var(--amber);
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.topic-modal__arrow:hover,
+.topic-modal__arrow:focus-visible {
+  background: var(--amber);
+  color: var(--text-primary);
+  border-color: var(--amber);
+  outline: none;
+}
+.topic-modal__counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  min-width: 68px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic-modal__card,
+  .topic-modal__backdrop { transition: none; }
+  .topic-modal__card { transform: none; }
+}
+
+/* ---- Mobile: the radial wheel doesn't fit, so unfold it ----
+   The center ring (with the three core logos) sits on its own full-width row,
+   and the six choose-able logos wrap into rows of circles beneath it. */
+@media (max-width: 760px) {
+  .topic-wheel {
+    position: static;
+    width: 100%;
+    aspect-ratio: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* align discs at the top; captions vary in height */
+    gap: 1.25rem 1rem;
+  }
+  .topic-wheel__spokes { display: none; }
+
+  .topic-hub {
+    position: static;
+    transform: none;
+    translate: none; /* desktop centers the hub via `translate`, not `transform` — must reset both */
+    flex-basis: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 22px;
+    padding: 1.75rem 1.5rem;
+    gap: 1rem;
+  }
+  .topic-node--core { width: clamp(80px, 24vw, 98px); }
+  .topic-node--core .topic-node__disc {
+    width: clamp(80px, 24vw, 98px);
+    height: clamp(80px, 24vw, 98px);
+  }
+
+  .topic-node--pick {
+    position: static;
+    translate: none; /* back to normal flow — no ring-centering offset on mobile */
+    flex-shrink: 0;  /* wrap to a new row rather than squishing the circle into an oval */
+    width: clamp(108px, 30vw, 138px);
+    height: auto;    /* let the in-flow caption grow the box */
+  }
+  .topic-node--pick .topic-node__disc {
+    width: clamp(108px, 30vw, 138px);
+    height: clamp(108px, 30vw, 138px);
+  }
+  /* caption flows beneath the disc on mobile instead of floating absolutely */
+  .topic-node--pick .topic-node__title {
+    position: static;
+    transform: none;
+    width: auto;
+    max-width: 16ch;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ============================================================
+   BUILD YOUR ENGAGEMENT — outline builder
+   ============================================================ */
+.builder { max-width: 840px; margin-inline: auto; }
+
+.builder__school {
+  max-width: 440px;
+  margin: 0 auto 2.75rem;
+  text-align: center;
+}
+.builder__label {
+  display: block;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+.builder__optional {
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+/* The school input sits on a dark section, so lighten it */
+.builder__school .form__input {
+  background: rgba(245, 240, 232, 0.04);
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  color: var(--text-primary);
+  text-align: center;
+}
+.builder__school .form__input::placeholder { color: var(--text-muted); }
+.builder__school .form__input:focus {
+  border-color: var(--amber-bright);
+  outline: none;
+}
+
+.builder__prompt {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.builder__count { color: var(--amber-bright); }
+
+.builder__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.25rem;
+}
+.builder-pill {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  border-radius: 100px;
+  padding: 0.7rem 1.3rem;
+  transition: transform 0.3s var(--ease-out-expo), background 0.3s ease,
+              color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+.builder-pill:hover {
+  border-color: var(--amber-bright);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+.builder-pill.is-selected {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--text-primary);
+}
+.builder-pill:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+.builder__actions { text-align: center; }
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+/* ---- The generated outline card ---- */
+.outline {
+  margin-top: 3.5rem;
+  background: var(--bg-cream);
+  border: 1px solid rgba(74, 103, 65, 0.3);
+  border-radius: 8px;
+  padding: clamp(1.75rem, 4vw, 3.25rem);
+  color: var(--text-dark);
+  text-align: left;
+  box-shadow: 0 30px 80px rgba(26, 24, 20, 0.3);
+}
+.outline[hidden] { display: none; }
+
+.outline__eyebrow { color: var(--amber-dim); margin-bottom: 0.9rem; }
+.outline__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 1.75rem;
+}
+.outline__title span { color: var(--amber); }
+
+/* Recommended-format callout */
+.outline__format {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  background: rgba(74, 103, 65, 0.08);
+  border: 1px solid rgba(74, 103, 65, 0.22);
+  border-radius: 6px;
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 2.25rem;
+}
+.outline__format-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+}
+.outline__format-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.outline__format-dur { color: var(--amber); font-size: 0.85rem; font-weight: 600; }
+.outline__format-note {
+  flex-basis: 100%;
+  color: var(--text-dark-sec);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* The session arc */
+.outline__section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+  margin-bottom: 1.25rem;
+}
+.outline__arc { list-style: none; margin: 0 0 2.25rem; padding: 0; }
+.outline__step {
+  border-left: 2px solid rgba(74, 103, 65, 0.28);
+  padding: 0.15rem 0 1.4rem 1.35rem;
+  position: relative;
+}
+.outline__arc .outline__step:last-child { padding-bottom: 0; }
+.outline__step::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.outline__step--fixed::before { background: var(--bg-void); }
+.outline__step-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+.outline__step-text { color: var(--text-dark-sec); font-size: 0.95rem; line-height: 1.7; }
+.outline__step-take {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--amber-dim);
+  font-style: italic;
+}
+.outline__step-tie {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Outcomes */
+.outline__outcomes {
+  list-style: none;
+  margin: 0 0 2.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.outline__outcomes li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-dark-sec);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.outline__outcomes li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+  font-weight: 700;
+}
+
+/* CTA row */
+.outline__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  border-top: 1px solid rgba(30, 27, 24, 0.1);
+  padding-top: 2rem;
+}
+.outline__cta .btn--outline {
+  border-color: rgba(74, 103, 65, 0.4);
+  color: var(--amber-dim);
+}
+.outline__cta .btn--outline:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--text-primary);
+}
+
+/* ---- Print: isolate the outline so admins can save it as a PDF ---- */
+@media print {
+  body * { visibility: hidden; }
+  .outline, .outline * { visibility: visible; }
+  .outline {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+  .outline__cta { display: none; } /* buttons are useless on paper */
+}
